@@ -4,13 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Contact | FootBallBootNG</title>
+  <title>Contact | FBNG SPORTS</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #070909;
+      --surface: #0d1110;
+      --surface-2: #111716;
+      --line: #202826;
+      --text: #f4f7f5;
+      --muted: #89928e;
+      --green: #b7ff32;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -22,10 +32,10 @@
     }
 
     body {
+      background: var(--bg);
+      color: var(--text);
       font-family: "Inter", sans-serif;
-      background: #080808;
-      color: #fff;
-      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -36,220 +46,398 @@
     input,
     textarea,
     button {
-      font-family: inherit;
+      font: inherit;
     }
 
-    /* NAVBAR */
+    /* =========================
+       NAVBAR
+    ========================= */
 
-    nav {
-      position: sticky;
+    .navbar {
+      position: fixed;
       top: 0;
+      left: 0;
+      width: 100%;
+      height: 78px;
       z-index: 1000;
-      height: 76px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 0 6%;
-      background: rgba(8, 8, 8, 0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+
+      background: rgba(7, 9, 9, 0.82);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      backdrop-filter: blur(18px);
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
       font-family: "Barlow Condensed", sans-serif;
-      font-size: 30px;
-      font-weight: 800;
+      font-size: 29px;
+      font-weight: 900;
       letter-spacing: 1px;
-      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 31px;
+      height: 31px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--green);
+      color: #071000;
+
+      font-size: 16px;
+      font-weight: 900;
+
+      transform: skew(-8deg);
     }
 
     .logo span {
-      font-weight: 500;
-      opacity: 0.65;
+      color: var(--green);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 30px;
+
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
     .nav-links a {
-      font-size: 14px;
-      font-weight: 600;
-      color: #bdbdbd;
+      color: #aeb5b2;
       transition: 0.25s ease;
     }
 
-    .nav-links a:hover {
-      color: #fff;
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--green);
     }
 
-    .cart-link {
+    .nav-cart {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     .cart-count {
-      min-width: 20px;
-      height: 20px;
-      display: inline-flex;
+      min-width: 21px;
+      height: 21px;
+
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 5px;
-      border-radius: 50px;
-      background: #fff;
-      color: #000;
+
+      background: var(--green);
+      color: #071000;
+
+      border-radius: 50%;
+
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
-    /* HERO */
+    /* =========================
+       HEADER
+    ========================= */
 
-    .contact-hero {
-      padding: 110px 6% 85px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .page-header {
+      position: relative;
+      overflow: hidden;
+
+      padding: 155px 7% 75px;
+
       background:
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08), transparent 35%),
-        #080808;
+        radial-gradient(
+          circle at 85% 50%,
+          rgba(183,255,50,0.09),
+          transparent 28%
+        ),
+        linear-gradient(
+          110deg,
+          #070909,
+          #0b100e
+        );
+
+      border-bottom: 1px solid var(--line);
     }
 
-    .section-label {
-      color: #777;
+    .page-header::after {
+      content: "TALK";
+
+      position: absolute;
+      right: -30px;
+      bottom: -65px;
+
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 190px;
+      font-weight: 900;
+
+      color: rgba(183,255,50,0.035);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-bottom: 18px;
+
+      color: var(--green);
+
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 12px;
     }
 
-    .contact-hero h1 {
+    .eyebrow::before {
+      content: "";
+
+      width: 28px;
+      height: 2px;
+
+      background: var(--green);
+    }
+
+    .page-header h1 {
+      position: relative;
+      z-index: 2;
+
       font-family: "Barlow Condensed", sans-serif;
-      font-size: clamp(65px, 11vw, 135px);
-      line-height: 0.85;
-      font-weight: 800;
-      text-transform: uppercase;
+
+      font-size: clamp(65px, 10vw, 125px);
+      font-weight: 900;
+
+      line-height: 0.82;
       letter-spacing: -2px;
-    }
 
-    .contact-hero h1 span {
-      color: #777;
-    }
-
-    .contact-hero p {
-      max-width: 600px;
-      margin-top: 28px;
-      color: #888;
-      font-size: 15px;
-    }
-
-    /* CONTACT SECTION */
-
-    .contact-section {
-      padding: 90px 6% 110px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .contact-info h2,
-    .form-wrapper h2 {
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: 52px;
-      line-height: 0.9;
       text-transform: uppercase;
     }
 
-    .contact-info > p {
-      max-width: 480px;
-      margin-top: 20px;
-      color: #888;
+    .page-header h1 span {
+      color: var(--green);
+    }
+
+    .page-header p {
+      position: relative;
+      z-index: 2;
+
+      max-width: 570px;
+
+      margin-top: 24px;
+
+      color: #89928e;
+
       font-size: 14px;
       line-height: 1.8;
     }
 
-    /* INFO CARDS */
+    /* =========================
+       CONTACT AREA
+    ========================= */
 
-    .info-list {
+    .contact-section {
+      padding: 80px 7% 110px;
+    }
+
+    .contact-grid {
+      max-width: 1200px;
+      margin: auto;
+
       display: grid;
-      gap: 12px;
-      margin-top: 35px;
+      grid-template-columns: 0.75fr 1.25fr;
+
+      gap: 25px;
+    }
+
+    /* =========================
+       CONTACT INFO
+    ========================= */
+
+    .info-column {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .info-card {
-      padding: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #101010;
+      padding: 28px;
+
+      background: var(--surface);
+      border: 1px solid var(--line);
+
       transition: 0.25s ease;
     }
 
     .info-card:hover {
-      border-color: rgba(255,255,255,0.2);
-      transform: translateX(4px);
+      border-color: #414c47;
+      transform: translateY(-3px);
     }
 
-    .info-card-label {
-      color: #666;
-      font-size: 9px;
+    .info-number {
+      color: var(--green);
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: 1.5px;
+
+      letter-spacing: 1px;
+    }
+
+    .info-card h2 {
+      margin-top: 35px;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 32px;
+      font-weight: 800;
+
       text-transform: uppercase;
     }
 
-    .info-card-value {
-      margin-top: 7px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #ddd;
+    .info-card p {
+      margin-top: 8px;
+
+      color: #737c78;
+
+      font-size: 12px;
+      line-height: 1.7;
     }
 
-    .info-card-value a:hover {
-      color: #fff;
+    .info-card a {
+      display: inline-block;
+
+      margin-top: 12px;
+
+      color: #bfc6c3;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      word-break: break-word;
+
+      transition: 0.2s ease;
     }
 
-    /* FORM */
-
-    .form-wrapper {
-      padding: 35px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #0d0d0d;
+    .info-card a:hover {
+      color: var(--green);
     }
 
-    .form-wrapper h2 {
-      font-size: 45px;
+    .whatsapp-btn {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+
+      padding: 13px 18px;
+
+      background: var(--green);
+      color: #071000 !important;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 17px !important;
+      font-weight: 900 !important;
+
+      text-transform: uppercase;
+
+      transition: 0.25s ease;
     }
 
-    .form-wrapper > p {
-      margin-top: 15px;
-      color: #777;
-      font-size: 13px;
+    .whatsapp-btn:hover {
+      background: #d0ff75;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-box {
+      padding: 38px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+    }
+
+    .form-label {
+      color: var(--green);
+
+      font-size: 11px;
+      font-weight: 800;
+
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .form-box h2 {
+      margin-top: 10px;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 54px;
+      font-weight: 900;
+
+      line-height: 0.9;
+
+      text-transform: uppercase;
+    }
+
+    .form-box h2 span {
+      color: var(--green);
+    }
+
+    .form-intro {
+      margin-top: 16px;
+
+      color: #737c78;
+
+      font-size: 12px;
+      line-height: 1.7;
     }
 
     form {
-      margin-top: 30px;
+      margin-top: 35px;
     }
 
-    .form-row {
+    .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+
+      gap: 17px;
     }
 
-    .field {
-      margin-bottom: 15px;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
     }
 
     label {
-      display: block;
-      margin-bottom: 7px;
-      color: #777;
+      color: #9ba39f;
+
       font-size: 10px;
       font-weight: 800;
+
       letter-spacing: 1px;
       text-transform: uppercase;
     }
@@ -257,18 +445,30 @@
     input,
     textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,0.1);
-      outline: none;
+
       padding: 14px 15px;
-      background: #080808;
+
+      background: #080b0a;
+
+      border: 1px solid #29312e;
+
+      outline: none;
+
       color: #fff;
-      font-size: 13px;
-      transition: 0.25s ease;
+
+      font-size: 12px;
+
+      transition: 0.2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #4e5753;
     }
 
     input:focus,
     textarea:focus {
-      border-color: rgba(255,255,255,0.35);
+      border-color: var(--green);
     }
 
     textarea {
@@ -278,212 +478,303 @@
 
     .submit-btn {
       width: 100%;
-      min-height: 52px;
-      margin-top: 5px;
+
+      margin-top: 20px;
+
+      padding: 16px;
+
       border: none;
-      background: #fff;
-      color: #000;
+
+      background: var(--green);
+      color: #071000;
+
       cursor: pointer;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1px;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 19px;
+      font-weight: 900;
+
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+
       transition: 0.25s ease;
     }
 
     .submit-btn:hover {
-      background: #ddd;
+      background: #d0ff75;
       transform: translateY(-2px);
     }
 
-    .form-message {
+    .form-success {
       display: none;
-      margin-top: 15px;
-      padding: 13px;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: #aaa;
+
+      margin-top: 20px;
+
+      padding: 15px;
+
+      border: 1px solid rgba(183,255,50,0.25);
+
+      background: rgba(183,255,50,0.05);
+
+      color: var(--green);
+
       font-size: 12px;
-      text-align: center;
+      line-height: 1.6;
     }
 
-    /* LOCATION */
+    /* =========================
+       LOCATION
+    ========================= */
 
-    .location {
-      padding: 90px 6%;
-      background: #0b0b0b;
+    .location-section {
+      padding: 0 7% 100px;
     }
 
-    .location-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .location-card {
+    .location-box {
+      max-width: 1200px;
       min-height: 280px;
-      padding: 35px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #101010;
+
+      margin: auto;
+
+      position: relative;
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+
+      padding: 50px;
+
+      background:
+        linear-gradient(
+          110deg,
+          #121916,
+          #090d0c
+        );
+
+      border: 1px solid #29332f;
     }
 
-    .location-card h3 {
+    .location-box::after {
+      content: "LAGOS";
+
+      position: absolute;
+      right: -20px;
+      bottom: -60px;
+
       font-family: "Barlow Condensed", sans-serif;
-      font-size: 36px;
+
+      font-size: 190px;
+      font-weight: 900;
+
+      color: rgba(183,255,50,0.035);
+    }
+
+    .location-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .location-content h2 {
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 60px;
+      font-weight: 900;
+
+      line-height: 0.9;
+
       text-transform: uppercase;
     }
 
-    .location-card p {
+    .location-content h2 span {
+      color: var(--green);
+    }
+
+    .location-content p {
+      max-width: 530px;
+
       margin-top: 15px;
-      color: #777;
+
+      color: #7b8580;
+
       font-size: 13px;
-      line-height: 1.8;
+      line-height: 1.7;
     }
 
-    .map-link {
-      display: inline-block;
-      margin-top: 25px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #777;
-      color: #aaa;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .address {
+      margin-top: 22px;
+
+      color: #b2bab6;
+
+      font-size: 12px;
+      font-weight: 600;
     }
 
-    .map-link:hover {
-      color: #fff;
-      border-color: #fff;
-    }
-
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
-      padding: 55px 6% 25px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      background: #050505;
+      border-top: 1px solid var(--line);
+      background: #050707;
+
+      padding: 55px 7% 25px;
     }
 
-    .footer-main {
+    .footer-top {
       display: flex;
       justify-content: space-between;
+
       gap: 40px;
+
       padding-bottom: 45px;
     }
 
     .footer-brand h3 {
       font-family: "Barlow Condensed", sans-serif;
+
       font-size: 32px;
+
       text-transform: uppercase;
+    }
+
+    .footer-brand h3 span {
+      color: var(--green);
     }
 
     .footer-brand p {
-      max-width: 330px;
+      max-width: 380px;
+
       margin-top: 10px;
-      color: #777;
-      font-size: 13px;
+
+      color: #6f7774;
+
+      font-size: 12px;
+      line-height: 1.7;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 60px;
+    .footer-contact {
+      text-align: right;
+
+      color: #727b77;
+
+      font-size: 12px;
+      line-height: 2;
     }
 
-    .footer-column h4 {
-      margin-bottom: 15px;
-      color: #777;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .footer-column a {
-      display: block;
-      margin-bottom: 9px;
-      color: #aaa;
-      font-size: 13px;
-    }
-
-    .footer-column a:hover {
-      color: #fff;
+    .footer-contact a:hover {
+      color: var(--green);
     }
 
     .footer-bottom {
+      padding-top: 22px;
+
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      color: #555;
-      font-size: 11px;
+
+      border-top: 1px solid #171c1a;
+
+      color: #4f5754;
+
+      font-size: 10px;
+
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .webfoundry {
-      color: #777;
+      color: #858e8a;
     }
 
-    /* RESPONSIVE */
+    .webfoundry:hover {
+      color: var(--green);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 850px) {
 
-      .contact-grid,
-      .location-grid {
-        grid-template-columns: 1fr;
-      }
+      .navbar {
+        height: auto;
+        min-height: 70px;
 
-      .footer-main {
-        flex-direction: column;
-      }
+        padding: 14px 5%;
 
-    }
-
-    @media (max-width: 650px) {
-
-      nav {
-        padding: 0 5%;
-      }
-
-      .nav-links {
-        gap: 15px;
-      }
-
-      .nav-links a:not(.cart-link) {
-        display: none;
+        flex-wrap: wrap;
+        gap: 12px;
       }
 
       .logo {
         font-size: 25px;
       }
 
-      .contact-hero {
-        padding: 80px 5% 65px;
+      .nav-links {
+        width: 100%;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        font-size: 10px;
       }
 
-      .contact-hero h1 {
-        font-size: 70px;
+      .page-header {
+        padding: 145px 6% 60px;
       }
 
-      .contact-section,
-      .location {
-        padding: 70px 5%;
+      .contact-section {
+        padding: 60px 6% 80px;
       }
 
-      .form-row {
+      .contact-grid {
         grid-template-columns: 1fr;
-        gap: 0;
       }
 
-      .form-wrapper {
-        padding: 25px;
+      .form-box {
+        padding: 27px;
       }
 
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 35px;
+      .location-section {
+        padding: 0 6% 75px;
+      }
+
+      .location-box {
+        padding: 40px 28px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-contact {
+        text-align: left;
       }
 
       .footer-bottom {
         flex-direction: column;
+        gap: 12px;
+      }
+
+    }
+
+    @media (max-width: 550px) {
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .form-box h2 {
+        font-size: 46px;
+      }
+
+      .location-content h2 {
+        font-size: 48px;
       }
 
     }
@@ -494,20 +785,32 @@
 
   <!-- NAVBAR -->
 
-  <nav>
+  <nav class="navbar">
 
     <a href="index.html" class="logo">
+      <div class="logo-mark">F</div>
       FBNG <span>SPORTS</span>
     </a>
 
     <div class="nav-links">
 
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html">
+        Home
+      </a>
 
-      <a href="cart.html" class="cart-link">
+      <a href="shop.html">
+        Shop
+      </a>
+
+      <a href="about.html">
+        About
+      </a>
+
+      <a href="contact.html" class="active">
+        Contact
+      </a>
+
+      <a href="cart.html" class="nav-cart">
         Cart
         <span class="cart-count" id="cartCount">0</span>
       </a>
@@ -517,12 +820,12 @@
   </nav>
 
 
-  <!-- HERO -->
+  <!-- HEADER -->
 
-  <header class="contact-hero">
+  <header class="page-header">
 
-    <div class="section-label">
-      FootBallBootNG / Contact
+    <div class="eyebrow">
+      FBNG / GET IN TOUCH
     </div>
 
     <h1>
@@ -531,16 +834,16 @@
     </h1>
 
     <p>
-      Have a question about a football boot, availability,
-      delivery or an order? Get in touch with the FootBallBootNG team.
+      Looking for a specific football boot, checking availability,
+      or simply have a question? Get in touch with FBNG SPORTS.
     </p>
 
   </header>
 
 
-  <main>
+  <!-- CONTACT -->
 
-    <!-- CONTACT -->
+  <main>
 
     <section class="contact-section">
 
@@ -549,108 +852,105 @@
 
         <!-- INFO -->
 
-        <div class="contact-info">
+        <div class="info-column">
 
-          <div class="section-label">
-            01 / Get In Touch
+
+          <div class="info-card">
+
+            <div class="info-number">
+              01 / PHONE
+            </div>
+
+            <h2>
+              CALL US
+            </h2>
+
+            <p>
+              Speak directly with the FBNG SPORTS team.
+            </p>
+
+            <a href="tel:+2349129162078">
+              +234 912 916 2078
+            </a>
+
           </div>
 
-          <h2>
-            WE'RE<br>
-            HERE TO HELP.
-          </h2>
 
-          <p>
-            Reach out to us directly for product enquiries,
-            availability, orders and general questions.
-          </p>
+          <div class="info-card">
 
-
-          <div class="info-list">
-
-            <div class="info-card">
-
-              <div class="info-card-label">
-                Phone / WhatsApp
-              </div>
-
-              <div class="info-card-value">
-                <a href="https://wa.me/2349129162078">
-                  +234 912 916 2078
-                </a>
-              </div>
-
+            <div class="info-number">
+              02 / EMAIL
             </div>
 
+            <h2>
+              EMAIL
+            </h2>
 
-            <div class="info-card">
+            <p>
+              Send us your questions or product enquiries.
+            </p>
 
-              <div class="info-card-label">
-                Email
-              </div>
-
-              <div class="info-card-value">
-                <a href="mailto:footballbootng@gmail.com">
-                  footballbootng@gmail.com
-                </a>
-              </div>
-
-            </div>
-
-
-            <div class="info-card">
-
-              <div class="info-card-label">
-                Location
-              </div>
-
-              <div class="info-card-value">
-                Palmgroove Bus Stop, Ikorodu Road, Lagos
-              </div>
-
-            </div>
-
-
-            <div class="info-card">
-
-              <div class="info-card-label">
-                Store Type
-              </div>
-
-              <div class="info-card-value">
-                Online Store
-              </div>
-
-            </div>
+            <a href="mailto:footballbootng@gmail.com">
+              footballbootng@gmail.com
+            </a>
 
           </div>
+
+
+          <div class="info-card">
+
+            <div class="info-number">
+              03 / WHATSAPP
+            </div>
+
+            <h2>
+              CHAT
+            </h2>
+
+            <p>
+              Message FBNG SPORTS directly on WhatsApp.
+            </p>
+
+            <a
+              href="https://wa.me/2349129162078"
+              target="_blank"
+              class="whatsapp-btn"
+            >
+              Chat On WhatsApp →
+            </a>
+
+          </div>
+
 
         </div>
 
 
         <!-- FORM -->
 
-        <div class="form-wrapper">
+        <div class="form-box">
 
-          <div class="section-label">
-            02 / Send A Message
+          <div class="form-label">
+            SEND A MESSAGE
           </div>
 
           <h2>
-            SEND US<br>
-            A MESSAGE.
+            WHAT'S<br>
+            <span>ON YOUR MIND?</span>
           </h2>
 
-          <p>
-            Fill in the form below and we'll get back to you.
+          <p class="form-intro">
+            Fill out the form and let us know what you need.
+            This demo form displays a confirmation message
+            and does not send data to a real backend.
           </p>
 
 
           <form id="contactForm">
 
-            <div class="form-row">
+            <div class="form-grid">
 
-              <div class="field">
+
+              <div class="form-group">
 
                 <label for="name">
                   Name
@@ -666,7 +966,7 @@
               </div>
 
 
-              <div class="field">
+              <div class="form-group">
 
                 <label for="email">
                   Email
@@ -681,50 +981,56 @@
 
               </div>
 
-            </div>
+
+              <div class="form-group full">
+
+                <label for="subject">
+                  Subject
+                </label>
+
+                <input
+                  type="text"
+                  id="subject"
+                  placeholder="What can we help with?"
+                  required
+                >
+
+              </div>
 
 
-            <div class="field">
+              <div class="form-group full">
 
-              <label for="subject">
-                Subject
-              </label>
+                <label for="message">
+                  Message
+                </label>
 
-              <input
-                type="text"
-                id="subject"
-                placeholder="What can we help with?"
-                required
-              >
+                <textarea
+                  id="message"
+                  placeholder="Tell us what you're looking for..."
+                  required
+                ></textarea>
 
-            </div>
+              </div>
 
-
-            <div class="field">
-
-              <label for="message">
-                Message
-              </label>
-
-              <textarea
-                id="message"
-                placeholder="Tell us what you need..."
-                required
-              ></textarea>
 
             </div>
 
 
             <button
               type="submit"
-              class="submit-btn">
-              Send Message
+              class="submit-btn"
+            >
+              Send Message →
             </button>
 
+
             <div
-              class="form-message"
-              id="formMessage">
-              Thanks! This demo form has received your message.
+              class="form-success"
+              id="formSuccess"
+            >
+              ✓ Message received. This is a demo form —
+              the FBNG SPORTS team would receive the message
+              through a connected backend in the live version.
             </div>
 
           </form>
@@ -738,113 +1044,31 @@
 
     <!-- LOCATION -->
 
-    <section class="location">
+    <section class="location-section">
 
-      <div class="section-label">
-        03 / Find Us
-      </div>
+      <div class="location-box">
 
-      <div class="location-grid">
+        <div class="location-content">
 
-        <div class="location-card">
+          <div class="eyebrow">
+            VISIT FBNG SPORTS
+          </div>
 
-          <h3>
-            Lagos
-          </h3>
-
-          <p>
-            Palmgroove Bus Stop<br>
-            Ikorodu Road<br>
-            Lagos, Nigeria
-          </p>
-
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=Palmgroove+Bus+Stop+Ikorodu+Road+Lagos"
-            target="_blank"
-            class="map-link">
-            Open In Maps →
-          </a>
-
-        </div>
-
-
-        <div class="location-card">
-
-          <h3>
-            Online
-          </h3>
+          <h2>
+            <span>LAGOS.</span><br>
+            FOOTBALL.
+          </h2>
 
           <p>
-            Browse available football boots and gear online,
-            or contact the team directly for product availability
-            and enquiries.
+            FBNG SPORTS is located around Palmgroove Bus Stop
+            on Ikorodu Road, Lagos.
           </p>
 
-          <a href="shop.html" class="map-link">
-            Browse The Shop →
-          </a>
+          <div class="address">
+            📍 Palmgroove Bus Stop, Ikorodu Road, Lagos, Nigeria
+          </div>
 
         </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- WHATSAPP CTA -->
-
-    <section class="contact-section">
-
-      <div style="
-        text-align:center;
-        padding:60px 30px;
-        border:1px solid rgba(255,255,255,0.08);
-        background:#101010;
-      ">
-
-        <div class="section-label">
-          Need A Quick Answer?
-        </div>
-
-        <h2 style="
-          font-family:'Barlow Condensed',sans-serif;
-          font-size:clamp(45px,7vw,80px);
-          line-height:.9;
-          text-transform:uppercase;
-        ">
-          CHAT WITH<br>
-          THE TEAM.
-        </h2>
-
-        <p style="
-          max-width:500px;
-          margin:20px auto 28px;
-          color:#777;
-          font-size:13px;
-        ">
-          Contact FootBallBootNG directly on WhatsApp
-          for quick product enquiries.
-        </p>
-
-        <a
-          href="https://wa.me/2349129162078"
-          target="_blank"
-          style="
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            min-height:50px;
-            padding:0 25px;
-            background:#fff;
-            color:#000;
-            border-radius:4px;
-            font-size:11px;
-            font-weight:800;
-            letter-spacing:1px;
-            text-transform:uppercase;
-          ">
-          Open WhatsApp
-        </a>
 
       </div>
 
@@ -857,70 +1081,38 @@
 
   <footer>
 
-    <div class="footer-main">
+    <div class="footer-top">
 
       <div class="footer-brand">
 
         <h3>
-          FootBallBootNG
+          FBNG <span>SPORTS</span>
         </h3>
 
         <p>
-          Premium football boots and gear for players
-          across Nigeria.
+          FootBallBootNG — football boots and performance
+          gear for players who take the game seriously.
         </p>
 
       </div>
 
 
-      <div class="footer-links">
+      <div class="footer-contact">
 
-        <div class="footer-column">
-
-          <h4>
-            Navigation
-          </h4>
-
-          <a href="index.html">Home</a>
-          <a href="shop.html">Shop</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-
+        <div>
+          📍 Palmgroove Bus Stop, Ikorodu Road, Lagos
         </div>
 
-
-        <div class="footer-column">
-
-          <h4>
-            Shop
-          </h4>
-
-          <a href="shop.html">Football Boots</a>
-          <a href="shop.html">Accessories</a>
-          <a href="shop.html">Latest Drops</a>
-          <a href="cart.html">Cart</a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-          <h4>
-            Connect
-          </h4>
-
-          <a href="https://wa.me/2349129162078">
-            WhatsApp
+        <div>
+          <a href="tel:+2349129162078">
+            +234 912 916 2078
           </a>
+        </div>
 
+        <div>
           <a href="mailto:footballbootng@gmail.com">
-            Email
+            footballbootng@gmail.com
           </a>
-
-          <a href="contact.html">
-            Contact Us
-          </a>
-
         </div>
 
       </div>
@@ -934,8 +1126,11 @@
         © 2026 FootBallBootNG. All rights reserved.
       </div>
 
-      <div class="webfoundry">
-        Website designed &amp; developed by WebFoundry
+      <div>
+        Website designed &amp; developed by
+        <a href="#" class="webfoundry">
+          WebFoundry
+        </a>
       </div>
 
     </div>
@@ -943,59 +1138,58 @@
   </footer>
 
 
-  <!-- JAVASCRIPT -->
-
   <script>
 
-    /* CART COUNT */
+    /* =========================
+       CART COUNT
+    ========================= */
 
     const cart =
-      JSON.parse(localStorage.getItem("fbngCart")) || [];
+      JSON.parse(
+        localStorage.getItem("fbngCart")
+      ) || [];
+
 
     const cartCount =
       cart.reduce(
-        (total, item) => total + item.quantity,
+        (total, item) =>
+          total + Number(item.quantity || 0),
         0
       );
+
 
     document.getElementById("cartCount").textContent =
       cartCount;
 
 
-    /* CONTACT FORM */
+    /* =========================
+       CONTACT FORM
+    ========================= */
 
-    const form =
+    const contactForm =
       document.getElementById("contactForm");
 
-    const formMessage =
-      document.getElementById("formMessage");
+    const formSuccess =
+      document.getElementById("formSuccess");
 
 
-    form.addEventListener("submit", function(event) {
+    contactForm.addEventListener(
+      "submit",
+      function(event) {
 
-      event.preventDefault();
+        event.preventDefault();
 
-      formMessage.style.display = "block";
+        formSuccess.style.display = "block";
 
-      form.reset();
+        contactForm.reset();
 
-    });
+        formSuccess.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
 
-
-    /* PRODUCT ENQUIRY */
-
-    const params =
-      new URLSearchParams(window.location.search);
-
-    const product =
-      params.get("product");
-
-    if (product) {
-
-      document.getElementById("subject").value =
-        "Product enquiry: " + product;
-
-    }
+      }
+    );
 
   </script>
 
