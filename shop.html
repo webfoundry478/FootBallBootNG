@@ -4,13 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Shop | FootBallBootNG</title>
+  <title>Shop | FBNG SPORTS</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #070909;
+      --surface: #0d1110;
+      --surface-2: #111716;
+      --line: #202826;
+      --text: #f4f7f5;
+      --muted: #89928e;
+      --green: #b7ff32;
+      --green-dark: #8fcf17;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -22,10 +33,10 @@
     }
 
     body {
+      background: var(--bg);
+      color: var(--text);
       font-family: "Inter", sans-serif;
-      background: #080808;
-      color: #fff;
-      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -33,135 +44,232 @@
       text-decoration: none;
     }
 
-    button {
-      font-family: inherit;
+    button,
+    input {
+      font: inherit;
     }
 
-    /* NAVBAR */
+    /* =========================
+       NAVBAR
+    ========================= */
 
-    nav {
-      position: sticky;
+    .navbar {
+      position: fixed;
       top: 0;
+      left: 0;
+      width: 100%;
+      height: 78px;
       z-index: 1000;
-      height: 76px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 0 6%;
-      background: rgba(8, 8, 8, 0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+
+      background: rgba(7, 9, 9, 0.82);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      backdrop-filter: blur(18px);
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
       font-family: "Barlow Condensed", sans-serif;
-      font-size: 30px;
-      font-weight: 800;
+      font-size: 29px;
+      font-weight: 900;
       letter-spacing: 1px;
-      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 31px;
+      height: 31px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--green);
+      color: #071000;
+
+      font-size: 16px;
+      font-weight: 900;
+
+      transform: skew(-8deg);
     }
 
     .logo span {
-      font-weight: 500;
-      opacity: 0.65;
+      color: var(--green);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 30px;
+
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
     .nav-links a {
-      font-size: 14px;
-      font-weight: 600;
-      color: #bdbdbd;
+      color: #aeb5b2;
       transition: 0.25s ease;
     }
 
-    .nav-links a:hover {
-      color: #fff;
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--green);
     }
 
-    .cart-link {
+    .nav-cart {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     .cart-count {
-      min-width: 20px;
-      height: 20px;
-      display: inline-flex;
+      min-width: 21px;
+      height: 21px;
+
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 5px;
-      border-radius: 50px;
-      background: #fff;
-      color: #000;
+
+      background: var(--green);
+      color: #071000;
+
+      border-radius: 50%;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================= */
 
-    .shop-header {
-      padding: 110px 6% 70px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .page-header {
+      position: relative;
+      overflow: hidden;
+
+      padding: 160px 7% 75px;
+
       background:
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08), transparent 35%),
-        #080808;
+        radial-gradient(
+          circle at 85% 50%,
+          rgba(183,255,50,0.08),
+          transparent 28%
+        ),
+        linear-gradient(
+          110deg,
+          #070909,
+          #0a0e0d
+        );
+
+      border-bottom: 1px solid var(--line);
     }
 
-    .section-label {
-      color: #777;
+    .page-header::after {
+      content: "SHOP";
+
+      position: absolute;
+      right: -20px;
+      bottom: -60px;
+
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 190px;
+      font-weight: 900;
+
+      color: rgba(183,255,50,0.035);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-bottom: 18px;
+
+      color: var(--green);
+
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 10px;
     }
 
-    .shop-header h1 {
+    .eyebrow::before {
+      content: "";
+
+      width: 28px;
+      height: 2px;
+
+      background: var(--green);
+    }
+
+    .page-header h1 {
+      position: relative;
+      z-index: 2;
+
       font-family: "Barlow Condensed", sans-serif;
-      font-size: clamp(65px, 10vw, 120px);
-      line-height: 0.85;
-      text-transform: uppercase;
-      font-weight: 800;
+      font-size: clamp(65px, 10vw, 125px);
+      font-weight: 900;
+      line-height: 0.82;
+
       letter-spacing: -2px;
+      text-transform: uppercase;
     }
 
-    .shop-header h1 span {
-      color: #777;
+    .page-header h1 span {
+      color: var(--green);
     }
 
-    .shop-header p {
-      max-width: 600px;
-      margin-top: 25px;
-      color: #888;
-      font-size: 15px;
+    .page-header p {
+      position: relative;
+      z-index: 2;
+
+      max-width: 550px;
+
+      margin-top: 24px;
+
+      color: #89928e;
+      font-size: 14px;
+      line-height: 1.8;
     }
 
-    /* SHOP */
+    /* =========================
+       SHOP AREA
+    ========================= */
 
     .shop-section {
-      padding: 70px 6% 100px;
+      padding: 70px 7% 110px;
     }
 
-    .shop-top {
+    .shop-toolbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+
       gap: 20px;
+
       margin-bottom: 35px;
+
+      padding-bottom: 20px;
+
+      border-bottom: 1px solid var(--line);
     }
 
-    .shop-count {
-      color: #777;
-      font-size: 12px;
+    .product-count {
+      color: #69726e;
+
+      font-size: 11px;
       font-weight: 700;
-      text-transform: uppercase;
+
       letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     .filter-buttons {
@@ -171,148 +279,284 @@
     }
 
     .filter-btn {
-      padding: 10px 16px;
-      border: 1px solid rgba(255,255,255,0.12);
+      padding: 9px 15px;
+
       background: transparent;
-      color: #999;
+      border: 1px solid #2a322f;
+
+      color: #858e8a;
+
       cursor: pointer;
-      font-size: 11px;
+
+      font-size: 10px;
       font-weight: 800;
+
       text-transform: uppercase;
-      transition: 0.25s ease;
+      letter-spacing: 0.8px;
+
+      transition: 0.2s ease;
     }
 
     .filter-btn:hover,
     .filter-btn.active {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
+      background: var(--green);
+      border-color: var(--green);
+      color: #071000;
     }
 
-    /* PRODUCT GRID */
+    /* =========================
+       PRODUCTS
+    ========================= */
 
-    .product-grid {
+    .products {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
     }
 
     .product-card {
+      position: relative;
+
+      background: var(--surface);
+      border: 1px solid var(--line);
+
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #0d0d0d;
+
       transition: 0.3s ease;
     }
 
     .product-card:hover {
+      border-color: #46524d;
       transform: translateY(-6px);
-      border-color: rgba(255,255,255,0.2);
     }
 
     .product-image {
-      height: 310px;
+      height: 280px;
+
+      position: relative;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+
       background:
-        radial-gradient(circle at center, #282828, transparent 60%),
-        #151515;
-      color: #555;
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+        radial-gradient(
+          circle at center,
+          #1a231f,
+          #0a0e0d 72%
+        );
     }
 
-    .product-tag {
+    .product-image::after {
+      content: "FBNG";
+
       position: absolute;
-      top: 15px;
+
       left: 15px;
+      bottom: 12px;
+
+      color: rgba(183,255,50,0.07);
+
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 48px;
+      font-weight: 900;
+    }
+
+    .boot-placeholder {
+      width: 155px;
+      height: 78px;
+
+      position: relative;
+
+      border: 2px solid #7c8781;
+
+      transform:
+        rotate(-14deg)
+        skew(-8deg);
+
+      transition: 0.3s ease;
+    }
+
+    .product-card:hover .boot-placeholder {
+      transform:
+        rotate(-10deg)
+        skew(-8deg)
+        scale(1.06);
+    }
+
+    .boot-placeholder::before {
+      content: "";
+
+      position: absolute;
+
+      left: -22px;
+      bottom: -11px;
+
+      width: 44px;
+      height: 19px;
+
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    .boot-placeholder::after {
+      content: "";
+
+      position: absolute;
+
+      top: 15px;
+      left: 25px;
+
+      width: 75px;
+      height: 2px;
+
+      background: var(--green);
+
+      box-shadow:
+        0 12px 0 rgba(183,255,50,0.55),
+        0 24px 0 rgba(183,255,50,0.3);
+    }
+
+    .badge {
+      position: absolute;
+
+      top: 14px;
+      left: 14px;
+
+      z-index: 2;
+
       padding: 6px 9px;
-      background: #fff;
-      color: #000;
+
+      background: var(--green);
+      color: #071000;
+
       font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 1px;
+      font-weight: 900;
+
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .product-info {
-      padding: 22px;
+      padding: 20px;
     }
 
-    .product-brand {
-      color: #777;
+    .product-category {
+      color: #6f7975;
+
       font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
+      font-weight: 700;
+
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
     .product-name {
       margin-top: 7px;
-      min-height: 45px;
-      font-size: 16px;
+
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 23px;
       font-weight: 700;
+
+      line-height: 1;
+
+      text-transform: uppercase;
     }
 
     .product-description {
-      margin-top: 8px;
-      color: #666;
-      font-size: 12px;
-      line-height: 1.6;
+      margin-top: 9px;
+
+      color: #68716d;
+
+      font-size: 11px;
+      line-height: 1.5;
     }
 
     .product-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      margin-top: 20px;
+
+      gap: 10px;
+
+      margin-top: 18px;
     }
 
-    .product-price {
-      font-size: 15px;
+    .price {
+      color: var(--green);
+
+      font-size: 14px;
       font-weight: 800;
-      white-space: nowrap;
     }
 
     .add-btn {
-      border: 1px solid rgba(255,255,255,0.2);
+      padding: 9px 13px;
+
       background: transparent;
+      border: 1px solid #36403c;
+
       color: #fff;
-      padding: 10px 13px;
+
       cursor: pointer;
-      font-size: 10px;
+
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 15px;
       font-weight: 800;
+
       text-transform: uppercase;
-      transition: 0.25s ease;
+
+      transition: 0.2s ease;
     }
 
     .add-btn:hover {
-      background: #fff;
-      color: #000;
+      background: var(--green);
+      border-color: var(--green);
+      color: #071000;
     }
 
-    .add-btn.added {
-      background: #fff;
-      color: #000;
+    /* =========================
+       EMPTY FILTER
+    ========================= */
+
+    .no-products {
+      display: none;
+
+      padding: 70px 20px;
+
+      border: 1px solid var(--line);
+
+      text-align: center;
     }
 
-    /* FOOTER */
+    .no-products h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 40px;
+      text-transform: uppercase;
+    }
+
+    .no-products p {
+      margin-top: 8px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
-      padding: 55px 6% 25px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      background: #050505;
+      border-top: 1px solid var(--line);
+      background: #050707;
+
+      padding: 55px 7% 25px;
     }
 
-    .footer-main {
+    .footer-top {
       display: flex;
       justify-content: space-between;
+
       gap: 40px;
+
       padding-bottom: 45px;
     }
 
@@ -322,117 +566,133 @@
       text-transform: uppercase;
     }
 
+    .footer-brand h3 span {
+      color: var(--green);
+    }
+
     .footer-brand p {
-      max-width: 330px;
+      max-width: 380px;
+
       margin-top: 10px;
-      color: #777;
-      font-size: 13px;
+
+      color: #6f7774;
+
+      font-size: 12px;
+      line-height: 1.7;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 60px;
+    .footer-contact {
+      text-align: right;
+
+      color: #727b77;
+
+      font-size: 12px;
+      line-height: 2;
     }
 
-    .footer-column h4 {
-      margin-bottom: 15px;
-      color: #777;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .footer-column a {
-      display: block;
-      margin-bottom: 9px;
-      color: #aaa;
-      font-size: 13px;
-    }
-
-    .footer-column a:hover {
-      color: #fff;
+    .footer-contact a:hover {
+      color: var(--green);
     }
 
     .footer-bottom {
+      padding-top: 22px;
+
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      color: #555;
-      font-size: 11px;
+
+      border-top: 1px solid #171c1a;
+
+      color: #4f5754;
+
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .webfoundry {
-      color: #777;
+      color: #858e8a;
     }
 
-    /* RESPONSIVE */
+    .webfoundry:hover {
+      color: var(--green);
+    }
 
-    @media (max-width: 900px) {
-      .product-grid {
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 1100px) {
+
+      .products {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .footer-main {
-        flex-direction: column;
-      }
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 700px) {
 
-      nav {
-        padding: 0 5%;
-      }
+      .navbar {
+        height: auto;
+        min-height: 70px;
 
-      .nav-links {
-        gap: 15px;
-      }
+        padding: 14px 5%;
 
-      .nav-links a:not(.cart-link) {
-        display: none;
+        flex-wrap: wrap;
+        gap: 12px;
       }
 
       .logo {
         font-size: 25px;
       }
 
-      .shop-header {
-        padding: 80px 5% 55px;
+      .nav-links {
+        width: 100%;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        font-size: 10px;
       }
 
-      .shop-header h1 {
-        font-size: 70px;
+      .page-header {
+        padding: 145px 6% 60px;
+      }
+
+      .page-header h1 {
+        font-size: 78px;
       }
 
       .shop-section {
-        padding: 55px 5% 75px;
+        padding: 55px 6% 80px;
       }
 
-      .shop-top {
-        display: block;
+      .shop-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
-      .filter-buttons {
-        margin-top: 20px;
-      }
-
-      .product-grid {
+      .products {
         grid-template-columns: 1fr;
       }
 
       .product-image {
-        height: 290px;
+        height: 310px;
       }
 
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 35px;
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-contact {
+        text-align: left;
       }
 
       .footer-bottom {
         flex-direction: column;
+        gap: 12px;
       }
+
     }
   </style>
 </head>
@@ -441,20 +701,24 @@
 
   <!-- NAVBAR -->
 
-  <nav>
+  <nav class="navbar">
 
     <a href="index.html" class="logo">
+      <div class="logo-mark">F</div>
       FBNG <span>SPORTS</span>
     </a>
 
     <div class="nav-links">
 
       <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
+
+      <a href="shop.html" class="active">Shop</a>
+
       <a href="about.html">About</a>
+
       <a href="contact.html">Contact</a>
 
-      <a href="cart.html" class="cart-link">
+      <a href="cart.html" class="nav-cart">
         Cart
         <span class="cart-count" id="cartCount">0</span>
       </a>
@@ -464,22 +728,22 @@
   </nav>
 
 
-  <!-- SHOP HEADER -->
+  <!-- HEADER -->
 
-  <header class="shop-header">
+  <header class="page-header">
 
-    <div class="section-label">
-      FootBallBootNG / Store
+    <div class="eyebrow">
+      FBNG / THE COLLECTION
     </div>
 
     <h1>
       SHOP<br>
-      <span>THE BOOTS.</span>
+      <span>BOOTS.</span>
     </h1>
 
     <p>
-      Explore football boots and performance gear from
-      some of the biggest names in the game.
+      Find your next pair of football boots. From control-focused
+      boots to speed-driven options, explore the FBNG SPORTS collection.
     </p>
 
   </header>
@@ -487,317 +751,488 @@
 
   <!-- SHOP -->
 
-  <main>
+  <main class="shop-section">
 
-    <section class="shop-section">
+    <div class="shop-toolbar">
 
-      <div class="shop-top">
+      <div class="product-count" id="productCount">
+        8 Products
+      </div>
 
-        <div class="shop-count">
-          Featured Collection
-        </div>
+      <div class="filter-buttons">
 
-        <div class="filter-buttons">
+        <button
+          class="filter-btn active"
+          data-filter="all"
+        >
+          All
+        </button>
 
-          <button class="filter-btn active" onclick="filterProducts('all', this)">
-            All
-          </button>
+        <button
+          class="filter-btn"
+          data-filter="predator"
+        >
+          Predator
+        </button>
 
-          <button class="filter-btn" onclick="filterProducts('adidas', this)">
-            Adidas
-          </button>
+        <button
+          class="filter-btn"
+          data-filter="speed"
+        >
+          Speed
+        </button>
 
-          <button class="filter-btn" onclick="filterProducts('nike', this)">
-            Nike
-          </button>
-
-          <button class="filter-btn" onclick="filterProducts('puma', this)">
-            Puma
-          </button>
-
-        </div>
+        <button
+          class="filter-btn"
+          data-filter="elite"
+        >
+          Elite
+        </button>
 
       </div>
 
+    </div>
 
-      <div class="product-grid" id="productGrid">
+
+    <div class="products" id="products">
 
 
-        <!-- PRODUCT 1 -->
+      <!-- PRODUCT 1 -->
 
-        <article class="product-card" data-brand="adidas">
+      <article
+        class="product-card"
+        data-category="predator elite"
+      >
 
-          <div class="product-image">
+        <div class="product-image">
 
-            <span class="product-tag">
-              Featured
-            </span>
-
-            Adidas Predator
+          <div class="badge">
+            Featured
           </div>
 
-          <div class="product-info">
+          <div class="boot-placeholder"></div>
 
-            <div class="product-brand">
-              Adidas
-            </div>
+        </div>
 
-            <div class="product-name">
-              Predator Elite Tongue FG Silver Red
-            </div>
+        <div class="product-info">
 
-            <div class="product-description">
-              Elite-level football boots designed for control,
-              grip and aggressive play.
-            </div>
-
-            <div class="product-bottom">
-
-              <div class="product-price">
-                ₦60,000
-              </div>
-
-              <button
-                class="add-btn"
-                onclick="addToCart(
-                  'predator-tongue',
-                  'Adidas Predator Elite Tongue FG Silver Red',
-                  60000,
-                  this
-                )">
-                Add to Cart
-              </button>
-
-            </div>
-
+          <div class="product-category">
+            Adidas / Predator
           </div>
 
-        </article>
-
-
-        <!-- PRODUCT 2 -->
-
-        <article class="product-card" data-brand="adidas">
-
-          <div class="product-image">
-
-            <span class="product-tag">
-              New
-            </span>
-
-            Adidas Predator
+          <div class="product-name">
+            Predator Elite Tongue FG
           </div>
 
-          <div class="product-info">
+          <div class="product-description">
+            Control-focused elite football boots.
+          </div>
 
-            <div class="product-brand">
-              Adidas
+          <div class="product-bottom">
+
+            <div class="price">
+              ₦60,000
             </div>
 
-            <div class="product-name">
-              Predator Elite Laced Solar Yellow FG
-            </div>
-
-            <div class="product-description">
-              A high-performance Predator designed for
-              confident touches and attacking play.
-            </div>
-
-            <div class="product-bottom">
-
-              <div class="product-price">
-                ₦58,000
-              </div>
-
-              <button
-                class="add-btn"
-                onclick="addToCart(
-                  'predator-yellow',
-                  'Adidas Predator Elite Laced Solar Yellow FG',
-                  58000,
-                  this
-                )">
-                Add to Cart
-              </button>
-
-            </div>
+            <button
+              class="add-btn"
+              onclick="addToCart(
+                1,
+                'Adidas Predator Elite Tongue FG',
+                60000
+              )"
+            >
+              Add +
+            </button>
 
           </div>
 
-        </article>
+        </div>
+
+      </article>
 
 
-        <!-- PRODUCT 3 -->
+      <!-- PRODUCT 2 -->
 
-        <article class="product-card" data-brand="nike">
+      <article
+        class="product-card"
+        data-category="predator elite"
+      >
 
-          <div class="product-image">
-            Nike Mercurial
+        <div class="product-image">
+
+          <div class="badge">
+            Popular
           </div>
 
-          <div class="product-info">
+          <div class="boot-placeholder"></div>
 
-            <div class="product-brand">
-              Nike
-            </div>
+        </div>
 
-            <div class="product-name">
-              Mercurial Elite Football Boots
-            </div>
+        <div class="product-info">
 
-            <div class="product-description">
-              Lightweight speed-focused boots built for
-              explosive acceleration.
-            </div>
-
-            <div class="product-bottom">
-
-              <div class="product-price">
-                Contact Us
-              </div>
-
-              <button
-                class="add-btn"
-                onclick="contactProduct('Nike Mercurial Elite Football Boots')">
-                Enquire
-              </button>
-
-            </div>
-
+          <div class="product-category">
+            Adidas / Predator
           </div>
 
-        </article>
-
-
-        <!-- PRODUCT 4 -->
-
-        <article class="product-card" data-brand="puma">
-
-          <div class="product-image">
-            Puma Future
+          <div class="product-name">
+            Predator Elite Laced FG
           </div>
 
-          <div class="product-info">
+          <div class="product-description">
+            Traditional laced fit with elite performance.
+          </div>
 
-            <div class="product-brand">
-              Puma
+          <div class="product-bottom">
+
+            <div class="price">
+              ₦58,000
             </div>
 
-            <div class="product-name">
-              Future Ultimate Football Boots
-            </div>
-
-            <div class="product-description">
-              Designed for agile players looking for
-              comfort and freedom of movement.
-            </div>
-
-            <div class="product-bottom">
-
-              <div class="product-price">
-                Contact Us
-              </div>
-
-              <button
-                class="add-btn"
-                onclick="contactProduct('Puma Future Ultimate Football Boots')">
-                Enquire
-              </button>
-
-            </div>
+            <button
+              class="add-btn"
+              onclick="addToCart(
+                2,
+                'Adidas Predator Elite Laced FG',
+                58000
+              )"
+            >
+              Add +
+            </button>
 
           </div>
 
-        </article>
+        </div>
+
+      </article>
 
 
-        <!-- PRODUCT 5 -->
+      <!-- PRODUCT 3 -->
 
-        <article class="product-card" data-brand="nike">
+      <article
+        class="product-card"
+        data-category="speed"
+      >
 
-          <div class="product-image">
-            Nike Phantom
+        <div class="product-image">
+
+          <div class="boot-placeholder"></div>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Performance / Speed
           </div>
 
-          <div class="product-info">
-
-            <div class="product-brand">
-              Nike
-            </div>
-
-            <div class="product-name">
-              Phantom Elite Football Boots
-            </div>
-
-            <div class="product-description">
-              Built for players who value precision,
-              control and accuracy.
-            </div>
-
-            <div class="product-bottom">
-
-              <div class="product-price">
-                Contact Us
-              </div>
-
-              <button
-                class="add-btn"
-                onclick="contactProduct('Nike Phantom Elite Football Boots')">
-                Enquire
-              </button>
-
-            </div>
-
+          <div class="product-name">
+            Speed Pro FG
           </div>
 
-        </article>
-
-
-        <!-- PRODUCT 6 -->
-
-        <article class="product-card" data-brand="adidas">
-
-          <div class="product-image">
-            Adidas F50
+          <div class="product-description">
+            Lightweight setup for fast attacking play.
           </div>
 
-          <div class="product-info">
+          <div class="product-bottom">
 
-            <div class="product-brand">
-              Adidas
+            <div class="price">
+              ₦52,000
             </div>
 
-            <div class="product-name">
-              F50 Elite Football Boots
-            </div>
-
-            <div class="product-description">
-              Lightweight speed boots made for quick
-              movement and explosive runs.
-            </div>
-
-            <div class="product-bottom">
-
-              <div class="product-price">
-                Contact Us
-              </div>
-
-              <button
-                class="add-btn"
-                onclick="contactProduct('Adidas F50 Elite Football Boots')">
-                Enquire
-              </button>
-
-            </div>
+            <button
+              class="add-btn"
+              onclick="addToCart(
+                3,
+                'Speed Pro FG',
+                52000
+              )"
+            >
+              Add +
+            </button>
 
           </div>
 
-        </article>
+        </div>
+
+      </article>
 
 
-      </div>
+      <!-- PRODUCT 4 -->
 
-    </section>
+      <article
+        class="product-card"
+        data-category="elite"
+      >
+
+        <div class="product-image">
+
+          <div class="badge">
+            Elite
+          </div>
+
+          <div class="boot-placeholder"></div>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Performance / Elite
+          </div>
+
+          <div class="product-name">
+            Elite Match FG
+          </div>
+
+          <div class="product-description">
+            Premium match-ready football boot.
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              ₦55,000
+            </div>
+
+            <button
+              class="add-btn"
+              onclick="addToCart(
+                4,
+                'Elite Match FG',
+                55000
+              )"
+            >
+              Add +
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 5 -->
+
+      <article
+        class="product-card"
+        data-category="speed"
+      >
+
+        <div class="product-image">
+
+          <div class="boot-placeholder"></div>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Performance / Speed
+          </div>
+
+          <div class="product-name">
+            Velocity FG
+          </div>
+
+          <div class="product-description">
+            Built around speed and quick movement.
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              ₦49,000
+            </div>
+
+            <button
+              class="add-btn"
+              onclick="addToCart(
+                5,
+                'Velocity FG',
+                49000
+              )"
+            >
+              Add +
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 6 -->
+
+      <article
+        class="product-card"
+        data-category="elite"
+      >
+
+        <div class="product-image">
+
+          <div class="boot-placeholder"></div>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Performance / Elite
+          </div>
+
+          <div class="product-name">
+            Match Pro FG
+          </div>
+
+          <div class="product-description">
+            Reliable performance for competitive matches.
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              ₦51,000
+            </div>
+
+            <button
+              class="add-btn"
+              onclick="addToCart(
+                6,
+                'Match Pro FG',
+                51000
+              )"
+            >
+              Add +
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 7 -->
+
+      <article
+        class="product-card"
+        data-category="predator"
+      >
+
+        <div class="product-image">
+
+          <div class="boot-placeholder"></div>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Adidas / Predator
+          </div>
+
+          <div class="product-name">
+            Predator Match FG
+          </div>
+
+          <div class="product-description">
+            Predator-inspired control and touch.
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              ₦46,000
+            </div>
+
+            <button
+              class="add-btn"
+              onclick="addToCart(
+                7,
+                'Adidas Predator Match FG',
+                46000
+              )"
+            >
+              Add +
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 8 -->
+
+      <article
+        class="product-card"
+        data-category="speed elite"
+      >
+
+        <div class="product-image">
+
+          <div class="badge">
+            New
+          </div>
+
+          <div class="boot-placeholder"></div>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Performance / Speed
+          </div>
+
+          <div class="product-name">
+            Sprint Elite FG
+          </div>
+
+          <div class="product-description">
+            Lightweight performance for explosive runs.
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              ₦57,000
+            </div>
+
+            <button
+              class="add-btn"
+              onclick="addToCart(
+                8,
+                'Sprint Elite FG',
+                57000
+              )"
+            >
+              Add +
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+
+    <div class="no-products" id="noProducts">
+
+      <h2>No Products Found</h2>
+
+      <p>
+        Try another category.
+      </p>
+
+    </div>
 
   </main>
 
@@ -806,56 +1241,38 @@
 
   <footer>
 
-    <div class="footer-main">
+    <div class="footer-top">
 
       <div class="footer-brand">
 
         <h3>
-          FootBallBootNG
+          FBNG <span>SPORTS</span>
         </h3>
 
         <p>
-          Premium football boots and gear for players
-          across Nigeria.
+          FootBallBootNG — football boots and performance
+          gear for players who take the game seriously.
         </p>
 
       </div>
 
 
-      <div class="footer-links">
+      <div class="footer-contact">
 
-        <div class="footer-column">
-
-          <h4>Navigation</h4>
-
-          <a href="index.html">Home</a>
-          <a href="shop.html">Shop</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-
+        <div>
+          📍 Palmgroove Bus Stop, Ikorodu Road, Lagos
         </div>
 
-
-        <div class="footer-column">
-
-          <h4>Shop</h4>
-
-          <a href="shop.html">Football Boots</a>
-          <a href="shop.html">Accessories</a>
-          <a href="shop.html">Latest Drops</a>
-          <a href="cart.html">Cart</a>
-
+        <div>
+          <a href="tel:+2349129162078">
+            +234 912 916 2078
+          </a>
         </div>
 
-
-        <div class="footer-column">
-
-          <h4>Connect</h4>
-
-          <a href="contact.html">WhatsApp</a>
-          <a href="contact.html">Instagram</a>
-          <a href="contact.html">Contact Us</a>
-
+        <div>
+          <a href="mailto:footballbootng@gmail.com">
+            footballbootng@gmail.com
+          </a>
         </div>
 
       </div>
@@ -869,8 +1286,11 @@
         © 2026 FootBallBootNG. All rights reserved.
       </div>
 
-      <div class="webfoundry">
-        Website designed & developed by WebFoundry
+      <div>
+        Website designed &amp; developed by
+        <a href="#" class="webfoundry">
+          WebFoundry
+        </a>
       </div>
 
     </div>
@@ -878,46 +1298,54 @@
   </footer>
 
 
-  <!-- JAVASCRIPT -->
-
   <script>
 
-    /* CART */
+    const cartKey = "fbngCart";
 
-    let cart = JSON.parse(localStorage.getItem("fbngCart")) || [];
+
+    let cart =
+      JSON.parse(
+        localStorage.getItem(cartKey)
+      ) || [];
 
 
     function updateCartCount() {
 
-      const count = cart.reduce(
-        (total, item) => total + item.quantity,
-        0
-      );
+      const count =
+        cart.reduce(
+          (total, item) =>
+            total + Number(item.quantity || 0),
+          0
+        );
 
-      document.getElementById("cartCount").textContent = count;
+      document.getElementById("cartCount").textContent =
+        count;
+
     }
 
 
     function saveCart() {
 
       localStorage.setItem(
-        "fbngCart",
+        cartKey,
         JSON.stringify(cart)
       );
 
       updateCartCount();
+
     }
 
 
-    function addToCart(id, name, price, button) {
+    function addToCart(id, name, price) {
 
-      const existing = cart.find(
-        item => item.id === id
-      );
+      const existing =
+        cart.find(item => item.id === id);
+
 
       if (existing) {
 
-        existing.quantity += 1;
+        existing.quantity =
+          Number(existing.quantity || 0) + 1;
 
       } else {
 
@@ -930,49 +1358,29 @@
 
       }
 
+
       saveCart();
 
-      button.textContent = "Added ✓";
-      button.classList.add("added");
-
-      setTimeout(() => {
-
-        button.textContent = "Add to Cart";
-        button.classList.remove("added");
-
-      }, 1200);
-    }
-
-
-    /* FILTERS */
-
-    function filterProducts(brand, button) {
-
-      const products =
-        document.querySelectorAll(".product-card");
 
       const buttons =
-        document.querySelectorAll(".filter-btn");
-
-      buttons.forEach(btn => {
-        btn.classList.remove("active");
-      });
-
-      button.classList.add("active");
+        document.querySelectorAll(".add-btn");
 
 
-      products.forEach(product => {
+      buttons.forEach(button => {
 
         if (
-          brand === "all" ||
-          product.dataset.brand === brand
+          button.getAttribute("onclick") &&
+          button.getAttribute("onclick").includes(`'${name}'`)
         ) {
 
-          product.style.display = "block";
+          const original =
+            button.textContent;
 
-        } else {
+          button.textContent = "Added ✓";
 
-          product.style.display = "none";
+          setTimeout(() => {
+            button.textContent = original;
+          }, 900);
 
         }
 
@@ -981,15 +1389,72 @@
     }
 
 
-    /* ENQUIRY */
+    /* FILTER */
 
-    function contactProduct(productName) {
+    const filterButtons =
+      document.querySelectorAll(".filter-btn");
 
-      window.location.href =
-        "contact.html?product=" +
-        encodeURIComponent(productName);
+    const productCards =
+      document.querySelectorAll(".product-card");
 
-    }
+    const noProducts =
+      document.getElementById("noProducts");
+
+    const productCount =
+      document.getElementById("productCount");
+
+
+    filterButtons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        filterButtons.forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+
+        const filter =
+          button.dataset.filter;
+
+
+        let visible = 0;
+
+
+        productCards.forEach(card => {
+
+          const categories =
+            card.dataset.category.split(" ");
+
+
+          if (
+            filter === "all" ||
+            categories.includes(filter)
+          ) {
+
+            card.style.display = "block";
+            visible++;
+
+          } else {
+
+            card.style.display = "none";
+
+          }
+
+        });
+
+
+        productCount.textContent =
+          visible + (visible === 1 ? " Product" : " Products");
+
+
+        noProducts.style.display =
+          visible === 0 ? "block" : "none";
+
+      });
+
+    });
 
 
     updateCartCount();
