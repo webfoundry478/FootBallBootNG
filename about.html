@@ -4,13 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About | FootBallBootNG</title>
+  <title>About | FBNG SPORTS</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #070909;
+      --surface: #0d1110;
+      --surface-2: #111716;
+      --line: #202826;
+      --text: #f4f7f5;
+      --muted: #89928e;
+      --green: #b7ff32;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -22,10 +32,10 @@
     }
 
     body {
+      background: var(--bg);
+      color: var(--text);
       font-family: "Inter", sans-serif;
-      background: #080808;
-      color: #fff;
-      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -33,446 +43,764 @@
       text-decoration: none;
     }
 
-    /* NAVBAR */
+    /* =========================
+       NAVBAR
+    ========================= */
 
-    nav {
-      position: sticky;
+    .navbar {
+      position: fixed;
       top: 0;
+      left: 0;
+      width: 100%;
+      height: 78px;
       z-index: 1000;
-      height: 76px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 0 6%;
-      background: rgba(8, 8, 8, 0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+
+      background: rgba(7, 9, 9, 0.82);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      backdrop-filter: blur(18px);
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
       font-family: "Barlow Condensed", sans-serif;
-      font-size: 30px;
-      font-weight: 800;
+      font-size: 29px;
+      font-weight: 900;
       letter-spacing: 1px;
-      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 31px;
+      height: 31px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--green);
+      color: #071000;
+
+      font-size: 16px;
+      font-weight: 900;
+
+      transform: skew(-8deg);
     }
 
     .logo span {
-      font-weight: 500;
-      opacity: 0.65;
+      color: var(--green);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 30px;
+
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
     .nav-links a {
-      font-size: 14px;
-      font-weight: 600;
-      color: #bdbdbd;
+      color: #aeb5b2;
       transition: 0.25s ease;
     }
 
-    .nav-links a:hover {
-      color: #fff;
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--green);
     }
 
-    .cart-link {
+    .nav-cart {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     .cart-count {
-      min-width: 20px;
-      height: 20px;
-      display: inline-flex;
+      min-width: 21px;
+      height: 21px;
+
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 5px;
-      border-radius: 50px;
-      background: #fff;
-      color: #000;
+
+      background: var(--green);
+      color: #071000;
+
+      border-radius: 50%;
+
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
-    /* HERO */
+    /* =========================
+       HERO
+    ========================= */
 
     .about-hero {
-      padding: 110px 6% 90px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+
+      min-height: 620px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 145px 7% 80px;
+
       background:
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08), transparent 35%),
-        #080808;
+        radial-gradient(
+          circle at 80% 45%,
+          rgba(183,255,50,0.09),
+          transparent 30%
+        ),
+        linear-gradient(
+          110deg,
+          #070909,
+          #0b100e
+        );
+
+      border-bottom: 1px solid var(--line);
     }
 
-    .section-label {
-      color: #777;
+    .about-hero::after {
+      content: "FBNG";
+
+      position: absolute;
+      right: -25px;
+      bottom: -80px;
+
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 260px;
+      font-weight: 900;
+
+      color: rgba(183,255,50,0.035);
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-bottom: 20px;
+
+      color: var(--green);
+
       font-size: 11px;
       font-weight: 800;
+
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 12px;
     }
 
-    .about-hero h1 {
-      max-width: 1000px;
+    .eyebrow::before {
+      content: "";
+
+      width: 30px;
+      height: 2px;
+
+      background: var(--green);
+    }
+
+    .hero-content h1 {
       font-family: "Barlow Condensed", sans-serif;
-      font-size: clamp(65px, 11vw, 135px);
-      line-height: 0.85;
-      font-weight: 800;
+
+      font-size: clamp(70px, 11vw, 145px);
+      font-weight: 900;
+
+      line-height: 0.82;
+      letter-spacing: -3px;
+
       text-transform: uppercase;
-      letter-spacing: -2px;
     }
 
-    .about-hero h1 span {
-      color: #777;
+    .hero-content h1 span {
+      color: var(--green);
     }
 
-    .about-hero p {
-      max-width: 650px;
-      margin-top: 30px;
-      color: #888;
+    .hero-content p {
+      max-width: 600px;
+
+      margin-top: 28px;
+
+      color: #89928e;
+
       font-size: 15px;
-      line-height: 1.9;
+      line-height: 1.8;
     }
 
-    /* STORY */
+    /* =========================
+       STORY
+    ========================= */
 
-    section {
-      padding: 100px 6%;
+    .section {
+      padding: 100px 7%;
     }
 
     .story-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+
+      gap: 70px;
+
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .section-title {
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: clamp(48px, 6vw, 75px);
-      line-height: 0.9;
+    .section-label {
+      color: var(--green);
+
+      font-size: 11px;
       font-weight: 800;
+
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      margin-bottom: 12px;
+    }
+
+    .story-title {
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: clamp(50px, 6vw, 76px);
+      font-weight: 900;
+
+      line-height: 0.9;
+
       text-transform: uppercase;
     }
 
-    .story-text p {
-      margin-top: 22px;
-      color: #888;
+    .story-title span {
+      color: var(--green);
+    }
+
+    .story-text {
+      margin-top: 25px;
+
+      color: #808985;
+
       font-size: 14px;
       line-height: 1.9;
     }
 
-    .story-visual {
-      min-height: 480px;
+    .story-text + .story-text {
+      margin-top: 16px;
+    }
+
+    /* =========================
+       VISUAL PANEL
+    ========================= */
+
+    .visual-panel {
       position: relative;
+
+      min-height: 420px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at center,
+          #1a231f,
+          #090d0c 70%
+        );
+
+      border: 1px solid #29322e;
+    }
+
+    .visual-panel::before {
+      content: "";
+
+      position: absolute;
+      inset: 35px;
+
+      border: 1px solid rgba(183,255,50,0.18);
+
+      transform: rotate(-6deg);
+    }
+
+    .visual-panel::after {
+      content: "PLAY";
+
+      position: absolute;
+
+      right: -20px;
+      bottom: -60px;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 170px;
+      font-weight: 900;
+
+      color: rgba(183,255,50,0.045);
+    }
+
+    .visual-content {
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+    .visual-mark {
+      width: 90px;
+      height: 90px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background:
-        radial-gradient(circle at center, #272727, transparent 55%),
-        #101010;
-    }
 
-    .story-visual::before,
-    .story-visual::after {
-      content: "";
-      position: absolute;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 50%;
-    }
+      background: var(--green);
+      color: #071000;
 
-    .story-visual::before {
-      width: 350px;
-      height: 350px;
-    }
-
-    .story-visual::after {
-      width: 500px;
-      height: 500px;
-    }
-
-    .visual-text {
-      position: relative;
-      z-index: 2;
       font-family: "Barlow Condensed", sans-serif;
-      font-size: 80px;
-      font-weight: 800;
+
+      font-size: 55px;
+      font-weight: 900;
+
+      transform: skew(-8deg);
+    }
+
+    .visual-content h3 {
+      margin-top: 25px;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 45px;
+      font-weight: 900;
+
       text-transform: uppercase;
-      text-align: center;
-      line-height: 0.8;
     }
 
-    .visual-text span {
-      color: #666;
+    .visual-content p {
+      margin-top: 5px;
+
+      color: #737c78;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
-    /* VALUES */
+    /* =========================
+       VALUES
+    ========================= */
 
-    .values {
-      background: #0b0b0b;
+    .values-section {
+      background: #090c0b;
+
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
     .values-header {
+      max-width: 1200px;
+      margin: auto;
+
       margin-bottom: 45px;
     }
 
+    .values-header h2 {
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: clamp(50px, 7vw, 82px);
+      font-weight: 900;
+
+      line-height: 0.9;
+
+      text-transform: uppercase;
+    }
+
+    .values-header h2 span {
+      color: var(--green);
+    }
+
     .values-grid {
+      max-width: 1200px;
+      margin: auto;
+
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
     }
 
     .value-card {
-      min-height: 260px;
+      min-height: 250px;
+
       padding: 30px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #101010;
+
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+
+      transition: 0.25s ease;
+    }
+
+    .value-card:hover {
+      background: #0d1210;
     }
 
     .value-number {
+      color: var(--green);
+
       font-family: "Barlow Condensed", sans-serif;
-      font-size: 45px;
+
+      font-size: 14px;
       font-weight: 800;
-      color: #555;
     }
 
     .value-card h3 {
-      margin-top: 25px;
+      margin-top: 60px;
+
       font-family: "Barlow Condensed", sans-serif;
+
       font-size: 32px;
+      font-weight: 800;
+
       text-transform: uppercase;
     }
 
     .value-card p {
-      margin-top: 12px;
-      color: #777;
+      margin-top: 10px;
+
+      color: #707a76;
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       LOCATION
+    ========================= */
+
+    .location {
+      max-width: 1200px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      gap: 25px;
+    }
+
+    .location-box {
+      padding: 35px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+    }
+
+    .location-box h3 {
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 38px;
+      font-weight: 800;
+
+      text-transform: uppercase;
+    }
+
+    .location-box h3 span {
+      color: var(--green);
+    }
+
+    .location-box p {
+      margin-top: 15px;
+
+      color: #747d79;
+
       font-size: 13px;
       line-height: 1.8;
     }
 
-    /* BRANDS */
+    .location-details {
+      margin-top: 25px;
 
-    .brands {
-      text-align: center;
-    }
-
-    .brands h2 {
-      max-width: 800px;
-      margin: auto;
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: clamp(48px, 7vw, 90px);
-      line-height: 0.9;
-      text-transform: uppercase;
-    }
-
-    .brands p {
-      max-width: 550px;
-      margin: 25px auto 45px;
-      color: #777;
-      font-size: 14px;
-    }
-
-    .brand-list {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 12px;
+
+      color: #a0a8a4;
+
+      font-size: 12px;
     }
 
-    .brand {
-      padding: 18px 30px;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #aaa;
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 1px;
+    .location-details strong {
+      color: var(--green);
+      margin-right: 6px;
     }
 
-    /* CTA */
+    /* =========================
+       CTA
+    ========================= */
 
     .cta {
-      text-align: center;
+      margin: 0 7% 100px;
+
+      min-height: 300px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 50px;
+
+      position: relative;
+      overflow: hidden;
+
       background:
-        radial-gradient(circle at center, rgba(255,255,255,0.07), transparent 45%),
-        #080808;
+        linear-gradient(
+          110deg,
+          #131b18,
+          #090d0c
+        );
+
+      border: 1px solid #29332f;
+    }
+
+    .cta::after {
+      content: "GAME";
+
+      position: absolute;
+
+      right: -30px;
+      bottom: -60px;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 200px;
+      font-weight: 900;
+
+      color: rgba(183,255,50,0.035);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
     }
 
     .cta h2 {
-      max-width: 850px;
-      margin: auto;
       font-family: "Barlow Condensed", sans-serif;
-      font-size: clamp(50px, 8vw, 100px);
+
+      font-size: clamp(45px, 6vw, 70px);
+      font-weight: 900;
+
       line-height: 0.9;
+
       text-transform: uppercase;
+    }
+
+    .cta h2 span {
+      color: var(--green);
     }
 
     .cta p {
       max-width: 500px;
-      margin: 25px auto 30px;
-      color: #888;
-      font-size: 14px;
+
+      margin: 17px 0 25px;
+
+      color: #808985;
+
+      font-size: 13px;
+      line-height: 1.7;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       min-height: 50px;
-      padding: 0 25px;
-      background: #fff;
-      color: #000;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 800;
+
+      padding: 0 26px;
+
+      background: var(--green);
+      color: #071000;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 18px;
+      font-weight: 900;
+
       text-transform: uppercase;
-      letter-spacing: 0.7px;
+
       transition: 0.25s ease;
     }
 
     .btn:hover {
+      background: #d0ff75;
       transform: translateY(-3px);
-      background: #ddd;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
-      padding: 55px 6% 25px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      background: #050505;
+      border-top: 1px solid var(--line);
+      background: #050707;
+
+      padding: 55px 7% 25px;
     }
 
-    .footer-main {
+    .footer-top {
       display: flex;
       justify-content: space-between;
+
       gap: 40px;
+
       padding-bottom: 45px;
     }
 
     .footer-brand h3 {
       font-family: "Barlow Condensed", sans-serif;
+
       font-size: 32px;
+
       text-transform: uppercase;
+    }
+
+    .footer-brand h3 span {
+      color: var(--green);
     }
 
     .footer-brand p {
-      max-width: 330px;
+      max-width: 380px;
+
       margin-top: 10px;
-      color: #777;
-      font-size: 13px;
+
+      color: #6f7774;
+
+      font-size: 12px;
+      line-height: 1.7;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 60px;
+    .footer-contact {
+      text-align: right;
+
+      color: #727b77;
+
+      font-size: 12px;
+      line-height: 2;
     }
 
-    .footer-column h4 {
-      margin-bottom: 15px;
-      color: #777;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .footer-column a {
-      display: block;
-      margin-bottom: 9px;
-      color: #aaa;
-      font-size: 13px;
-    }
-
-    .footer-column a:hover {
-      color: #fff;
+    .footer-contact a:hover {
+      color: var(--green);
     }
 
     .footer-bottom {
+      padding-top: 22px;
+
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      color: #555;
-      font-size: 11px;
+
+      border-top: 1px solid #171c1a;
+
+      color: #4f5754;
+
+      font-size: 10px;
+
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .webfoundry {
-      color: #777;
+      color: #858e8a;
     }
 
-    /* RESPONSIVE */
+    .webfoundry:hover {
+      color: var(--green);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 850px) {
 
-      .story-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
+      .navbar {
+        height: auto;
+        min-height: 70px;
 
-      .values-grid {
-        grid-template-columns: 1fr;
-      }
+        padding: 14px 5%;
 
-      .footer-main {
-        flex-direction: column;
-      }
-
-    }
-
-    @media (max-width: 650px) {
-
-      nav {
-        padding: 0 5%;
-      }
-
-      .nav-links {
-        gap: 15px;
-      }
-
-      .nav-links a:not(.cart-link) {
-        display: none;
+        flex-wrap: wrap;
+        gap: 12px;
       }
 
       .logo {
         font-size: 25px;
       }
 
+      .nav-links {
+        width: 100%;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        font-size: 10px;
+      }
+
       .about-hero {
-        padding: 80px 5% 65px;
+        padding: 145px 6% 75px;
       }
 
-      .about-hero h1 {
-        font-size: 70px;
+      .story-grid,
+      .location {
+        grid-template-columns: 1fr;
       }
 
-      section {
-        padding: 75px 5%;
+      .values-grid {
+        grid-template-columns: 1fr;
       }
 
-      .story-visual {
-        min-height: 350px;
+      .visual-panel {
+        min-height: 360px;
       }
 
-      .visual-text {
-        font-size: 60px;
+      .cta {
+        margin: 0 6% 75px;
+        padding: 40px 28px;
       }
 
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 35px;
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-contact {
+        text-align: left;
       }
 
       .footer-bottom {
         flex-direction: column;
+        gap: 12px;
       }
 
     }
@@ -483,20 +811,32 @@
 
   <!-- NAVBAR -->
 
-  <nav>
+  <nav class="navbar">
 
     <a href="index.html" class="logo">
+      <div class="logo-mark">F</div>
       FBNG <span>SPORTS</span>
     </a>
 
     <div class="nav-links">
 
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html">
+        Home
+      </a>
 
-      <a href="cart.html" class="cart-link">
+      <a href="shop.html">
+        Shop
+      </a>
+
+      <a href="about.html" class="active">
+        About
+      </a>
+
+      <a href="contact.html">
+        Contact
+      </a>
+
+      <a href="cart.html" class="nav-cart">
         Cart
         <span class="cart-count" id="cartCount">0</span>
       </a>
@@ -508,279 +848,317 @@
 
   <!-- HERO -->
 
-  <header class="about-hero">
+  <section class="about-hero">
 
-    <div class="section-label">
-      FootBallBootNG / About
-    </div>
+    <div class="hero-content">
 
-    <h1>
-      BUILT<br>
-      <span>FOR THE</span><br>
-      GAME.
-    </h1>
-
-    <p>
-      FootBallBootNG is a football-focused store built around
-      one simple idea: players deserve access to quality boots
-      and gear that help them perform at their best.
-    </p>
-
-  </header>
-
-
-  <main>
-
-    <!-- STORY -->
-
-    <section>
-
-      <div class="story-grid">
-
-        <div class="story-text">
-
-          <div class="section-label">
-            01 / Our Story
-          </div>
-
-          <h2 class="section-title">
-            More Than<br>
-            Just Boots.
-          </h2>
-
-          <p>
-            Football is more than a sport. It is preparation,
-            confidence, competition and the feeling of stepping
-            onto the pitch ready for whatever comes next.
-          </p>
-
-          <p>
-            FootBallBootNG focuses on bringing football players
-            access to premium boots and performance gear from
-            leading brands such as Adidas, Nike and Puma.
-          </p>
-
-          <p>
-            From training sessions to match day, our goal is to
-            make finding the right football gear simple.
-          </p>
-
-        </div>
-
-
-        <div class="story-visual">
-
-          <div class="visual-text">
-            FBNG<br>
-            <span>FOOTBALL</span>
-          </div>
-
-        </div>
-
+      <div class="eyebrow">
+        ABOUT FBNG SPORTS
       </div>
 
-    </section>
-
-
-    <!-- VALUES -->
-
-    <section class="values">
-
-      <div class="values-header">
-
-        <div class="section-label">
-          02 / What We Stand For
-        </div>
-
-        <h2 class="section-title">
-          OUR<br>
-          VALUES.
-        </h2>
-
-      </div>
-
-
-      <div class="values-grid">
-
-        <div class="value-card">
-
-          <div class="value-number">
-            01
-          </div>
-
-          <h3>
-            Quality
-          </h3>
-
-          <p>
-            We focus on football products from recognised
-            brands and ranges built for players.
-          </p>
-
-        </div>
-
-
-        <div class="value-card">
-
-          <div class="value-number">
-            02
-          </div>
-
-          <h3>
-            Performance
-          </h3>
-
-          <p>
-            The right boots can help players feel prepared,
-            comfortable and confident on the pitch.
-          </p>
-
-        </div>
-
-
-        <div class="value-card">
-
-          <div class="value-number">
-            03
-          </div>
-
-          <h3>
-            Football First
-          </h3>
-
-          <p>
-            Everything starts with the game and the players
-            who live for it.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- BRANDS -->
-
-    <section class="brands">
-
-      <div class="section-label">
-        03 / Our Brands
-      </div>
-
-      <h2>
-        THE NAMES<br>
-        YOU KNOW.
-      </h2>
+      <h1>
+        MADE<br>
+        FOR THE <span>GAME.</span>
+      </h1>
 
       <p>
-        Explore football products from some of the biggest
-        names in the game.
+        FootBallBootNG is focused on football boots and
+        performance gear for players who want to step onto
+        the pitch ready to perform.
       </p>
 
+    </div>
 
-      <div class="brand-list">
+  </section>
 
-        <div class="brand">
-          ADIDAS
+
+  <!-- STORY -->
+
+  <section class="section">
+
+    <div class="story-grid">
+
+      <div>
+
+        <div class="section-label">
+          OUR STORY
         </div>
 
-        <div class="brand">
-          NIKE
-        </div>
+        <h2 class="story-title">
+          MORE THAN<br>
+          JUST <span>BOOTS.</span>
+        </h2>
 
-        <div class="brand">
-          PUMA
+        <p class="story-text">
+          Football is more than ninety minutes on a pitch.
+          It's preparation, confidence, movement and the
+          feeling of being ready when the whistle blows.
+        </p>
+
+        <p class="story-text">
+          FBNG SPORTS is built around that mindset — giving
+          football players access to boots and gear designed
+          around the demands of the game.
+        </p>
+
+      </div>
+
+
+      <div class="visual-panel">
+
+        <div class="visual-content">
+
+          <div class="visual-mark">
+            F
+          </div>
+
+          <h3>
+            FBNG SPORTS
+          </h3>
+
+          <p>
+            Football / Performance / Lagos
+          </p>
+
         </div>
 
       </div>
 
-    </section>
+    </div>
+
+  </section>
 
 
-    <!-- CTA -->
+  <!-- VALUES -->
 
-    <section class="cta">
+  <section class="section values-section">
+
+    <div class="values-header">
+
+      <div class="section-label">
+        THE FBNG MINDSET
+      </div>
 
       <h2>
-        READY FOR<br>
-        YOUR NEXT MATCH?
+        BUILT AROUND<br>
+        THE <span>PLAYER.</span>
+      </h2>
+
+    </div>
+
+
+    <div class="values-grid">
+
+      <div class="value-card">
+
+        <div class="value-number">
+          01 / PERFORMANCE
+        </div>
+
+        <h3>
+          PLAY HARD
+        </h3>
+
+        <p>
+          Football gear should support the way you play,
+          whether you're chasing speed, control or
+          match-day confidence.
+        </p>
+
+      </div>
+
+
+      <div class="value-card">
+
+        <div class="value-number">
+          02 / FOOTBALL
+        </div>
+
+        <h3>
+          STAY READY
+        </h3>
+
+        <p>
+          From training sessions to competitive matches,
+          having the right equipment means being prepared
+          when the opportunity comes.
+        </p>
+
+      </div>
+
+
+      <div class="value-card">
+
+        <div class="value-number">
+          03 / FOCUS
+        </div>
+
+        <h3>
+          KEEP MOVING
+        </h3>
+
+        <p>
+          The game keeps moving. Your gear should keep up.
+          FBNG focuses on products made for players who
+          want to keep improving.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- LOCATION -->
+
+  <section class="section">
+
+    <div class="location">
+
+      <div class="location-box">
+
+        <div class="section-label">
+          FIND US
+        </div>
+
+        <h3>
+          FBNG <span>LAGOS</span>
+        </h3>
+
+        <p>
+          Visit FBNG SPORTS around Palmgroove Bus Stop
+          on Ikorodu Road, Lagos.
+        </p>
+
+        <div class="location-details">
+
+          <div>
+            <strong>Location:</strong>
+            Palmgroove Bus Stop, Ikorodu Road, Lagos
+          </div>
+
+          <div>
+            <strong>Phone:</strong>
+            <a href="tel:+2349129162078">
+              +234 912 916 2078
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="location-box">
+
+        <div class="section-label">
+          ONLINE
+        </div>
+
+        <h3>
+          STAY <span>CONNECTED.</span>
+        </h3>
+
+        <p>
+          Have a question about football boots or want
+          to check availability? Get in touch with the
+          FBNG SPORTS team.
+        </p>
+
+        <div class="location-details">
+
+          <div>
+            <strong>Email:</strong>
+            <a href="mailto:footballbootng@gmail.com">
+              footballbootng@gmail.com
+            </a>
+          </div>
+
+          <div>
+            <strong>WhatsApp:</strong>
+            <a
+              href="https://wa.me/2349129162078"
+              target="_blank"
+            >
+              Chat with FBNG
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="cta-content">
+
+      <div class="section-label">
+        READY TO PLAY?
+      </div>
+
+      <h2>
+        FIND YOUR<br>
+        <span>NEXT PAIR.</span>
       </h2>
 
       <p>
-        Explore the latest football boots and gear
-        available at FootBallBootNG.
+        Explore the FBNG SPORTS collection and find
+        football boots built around your game.
       </p>
 
       <a href="shop.html" class="btn">
-        Explore The Shop
+        Shop The Collection
       </a>
 
-    </section>
+    </div>
 
-  </main>
+  </section>
 
 
   <!-- FOOTER -->
 
   <footer>
 
-    <div class="footer-main">
+    <div class="footer-top">
 
       <div class="footer-brand">
 
         <h3>
-          FootBallBootNG
+          FBNG <span>SPORTS</span>
         </h3>
 
         <p>
-          Premium football boots and gear for players
-          across Nigeria.
+          FootBallBootNG — football boots and performance
+          gear for players who take the game seriously.
         </p>
 
       </div>
 
 
-      <div class="footer-links">
+      <div class="footer-contact">
 
-        <div class="footer-column">
-
-          <h4>
-            Navigation
-          </h4>
-
-          <a href="index.html">Home</a>
-          <a href="shop.html">Shop</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-
+        <div>
+          📍 Palmgroove Bus Stop, Ikorodu Road, Lagos
         </div>
 
-
-        <div class="footer-column">
-
-          <h4>
-            Shop
-          </h4>
-
-          <a href="shop.html">Football Boots</a>
-          <a href="shop.html">Accessories</a>
-          <a href="shop.html">Latest Drops</a>
-          <a href="cart.html">Cart</a>
-
+        <div>
+          <a href="tel:+2349129162078">
+            +234 912 916 2078
+          </a>
         </div>
 
-
-        <div class="footer-column">
-
-          <h4>
-            Connect
-          </h4>
-
-          <a href="contact.html">WhatsApp</a>
-          <a href="contact.html">Instagram</a>
-          <a href="contact.html">Contact Us</a>
-
+        <div>
+          <a href="mailto:footballbootng@gmail.com">
+            footballbootng@gmail.com
+          </a>
         </div>
 
       </div>
@@ -794,8 +1172,11 @@
         © 2026 FootBallBootNG. All rights reserved.
       </div>
 
-      <div class="webfoundry">
-        Website designed &amp; developed by WebFoundry
+      <div>
+        Website designed &amp; developed by
+        <a href="#" class="webfoundry">
+          WebFoundry
+        </a>
       </div>
 
     </div>
@@ -803,18 +1184,21 @@
   </footer>
 
 
-  <!-- CART COUNT -->
-
   <script>
 
     const cart =
-      JSON.parse(localStorage.getItem("fbngCart")) || [];
+      JSON.parse(
+        localStorage.getItem("fbngCart")
+      ) || [];
+
 
     const cartCount =
       cart.reduce(
-        (total, item) => total + item.quantity,
+        (total, item) =>
+          total + Number(item.quantity || 0),
         0
       );
+
 
     document.getElementById("cartCount").textContent =
       cartCount;
