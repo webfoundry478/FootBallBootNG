@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Checkout | FBNG SPORTS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #080808;
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7%;
+      background: rgba(8, 8, 8, 0.92);
+      border-bottom: 1px solid #202020;
+      backdrop-filter: blur(14px);
+    }
+
+    .logo {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #aaa;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    .cart-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-count {
+      min-width: 21px;
+      height: 21px;
+      padding: 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      background: #fff;
+      color: #000;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* PAGE HEADER */
+
+    .page-header {
+      padding: 80px 7% 55px;
+      border-bottom: 1px solid #181818;
+    }
+
+    .eyebrow {
+      color: #888;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    .page-header p {
+      max-width: 580px;
+      margin-top: 18px;
+      color: #999;
+      font-size: 15px;
+    }
+
+    /* CHECKOUT */
+
+    .checkout-section {
+      padding: 70px 7% 100px;
+    }
+
+    .checkout-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .checkout-box {
+      background: #0d0d0d;
+      border: 1px solid #202020;
+      padding: 32px;
+    }
+
+    .box-title {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 30px;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+      letter-spacing: 0.5px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: #aaa;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      background: #080808;
+      color: #fff;
+      border: 1px solid #292929;
+      padding: 14px 15px;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.25s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #777;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    select {
+      appearance: none;
+    }
+
+    .demo-note {
+      margin-top: 24px;
+      padding: 15px;
+      border: 1px solid #252525;
+      background: #111;
+      color: #999;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .demo-note strong {
+      color: #fff;
+    }
+
+    /* ORDER SUMMARY */
+
+    .summary-box {
+      position: sticky;
+      top: 100px;
+    }
+
+    .order-items {
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+      margin-bottom: 20px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 16px 0;
+      border-bottom: 1px solid #1c1c1c;
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-info {
+      min-width: 0;
+    }
+
+    .item-name {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .item-quantity {
+      margin-top: 5px;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .item-price {
+      white-space: nowrap;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .summary-row.total {
+      margin-top: 10px;
+      padding-top: 20px;
+      border-top: 1px solid #282828;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .summary-row.total span:last-child {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 28px;
+    }
+
+    .place-order {
+      width: 100%;
+      margin-top: 25px;
+      padding: 16px 20px;
+      border: none;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      transition: 0.25s ease;
+    }
+
+    .place-order:hover {
+      background: #ddd;
+      transform: translateY(-2px);
+    }
+
+    .back-cart {
+      display: block;
+      margin-top: 16px;
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+      transition: 0.25s ease;
+    }
+
+    .back-cart:hover {
+      color: #fff;
+    }
+
+    /* EMPTY */
+
+    .empty-checkout {
+      max-width: 650px;
+      margin: 20px auto 100px;
+      padding: 60px 30px;
+      text-align: center;
+      border: 1px solid #222;
+      background: #0d0d0d;
+    }
+
+    .empty-checkout h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 38px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .empty-checkout p {
+      color: #888;
+      margin-bottom: 25px;
+    }
+
+    .shop-button {
+      display: inline-block;
+      padding: 13px 25px;
+      background: #fff;
+      color: #000;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    /* SUCCESS */
+
+    .success-message {
+      display: none;
+      max-width: 700px;
+      margin: 30px auto 100px;
+      padding: 55px 35px;
+      text-align: center;
+      border: 1px solid #292929;
+      background: #0d0d0d;
+    }
+
+    .success-icon {
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #444;
+      border-radius: 50%;
+      font-size: 22px;
+    }
+
+    .success-message h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 42px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .success-message p {
+      color: #888;
+      max-width: 520px;
+      margin: auto;
+      font-size: 14px;
+    }
+
+    .whatsapp-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 24px;
+      background: #fff;
+      color: #000;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #202020;
+      padding: 45px 7% 25px;
+      background: #060606;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 35px;
+    }
+
+    .footer-brand h3 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 25px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .footer-brand p {
+      max-width: 350px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .footer-contact {
+      text-align: right;
+      color: #888;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .footer-contact a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      padding-top: 22px;
+      border-top: 1px solid #191919;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #555;
+      font-size: 11px;
+    }
+
+    .webfoundry {
+      color: #888;
+    }
+
+    .webfoundry:hover {
+      color: #fff;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+      .navbar {
+        padding: 0 5%;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .checkout-section {
+        padding: 50px 5% 80px;
+      }
+
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-box {
+        position: static;
+        order: -1;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-contact {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        height: auto;
+        min-height: 70px;
+        padding: 15px 5%;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 12px;
+      }
+
+      .page-header {
+        padding: 60px 5% 40px;
+      }
+
+      .checkout-box {
+        padding: 22px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      FBNG <span>SPORTS</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+
+      <a href="cart.html" class="cart-link">
+        CART
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- HEADER -->
+
+  <header class="page-header">
+    <div class="eyebrow">FBNG SPORTS / ORDER</div>
+
+    <h1>Checkout</h1>
+
+    <p>
+      Complete your details below to continue with your FBNG SPORTS order.
+    </p>
+  </header>
+
+
+  <!-- CHECKOUT -->
+
+  <main id="checkoutContent">
+
+    <section class="checkout-section">
+
+      <div class="checkout-grid">
+
+        <!-- CUSTOMER DETAILS -->
+
+        <div class="checkout-box">
+
+          <h2 class="box-title">Customer Details</h2>
+
+          <form id="checkoutForm">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  required
+                  placeholder="Your first name"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  required
+                  placeholder="Your last name"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  required
+                  placeholder="+234..."
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  placeholder="you@example.com"
+                >
+              </div>
+
+              <div class="form-group full">
+                <label for="address">Delivery Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  required
+                  placeholder="Street address"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="city">City</label>
+                <input
+                  type="text"
+                  id="city"
+                  required
+                  placeholder="Lagos"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="state">State</label>
+                <input
+                  type="text"
+                  id="state"
+                  required
+                  placeholder="Lagos State"
+                >
+              </div>
+
+              <div class="form-group full">
+                <label for="notes">Order Notes</label>
+                <textarea
+                  id="notes"
+                  placeholder="Anything we should know about your order?"
+                ></textarea>
+              </div>
+
+            </div>
+
+            <div class="demo-note">
+              <strong>Demo checkout:</strong>
+              This website concept does not process real payments.
+              Orders can be handed off to FBNG SPORTS through WhatsApp.
+            </div>
+
+            <button type="submit" class="place-order">
+              Complete Order
+            </button>
+
+          </form>
+
+        </div>
+
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="checkout-box summary-box">
+
+          <h2 class="box-title">Your Order</h2>
+
+          <div class="order-items" id="orderItems"></div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="subtotal">₦0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Delivery</span>
+            <span>Calculated later</span>
+          </div>
+
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="total">₦0</span>
+          </div>
+
+          <a href="cart.html" class="back-cart">
+            ← Back to Cart
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- SUCCESS -->
+
+  <section class="success-message" id="successMessage">
+
+    <div class="success-icon">✓</div>
+
+    <h2>Order Ready</h2>
+
+    <p>
+      Your order details have been prepared. Continue to WhatsApp
+      to send the order information directly to FBNG SPORTS.
+    </p>
+
+    <a
+      href="#"
+      target="_blank"
+      class="whatsapp-button"
+      id="whatsappOrder"
+    >
+      Continue on WhatsApp
+    </a>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <h3>FootBallBootNG</h3>
+
+        <p>
+          Football boots and gear for players who take the game seriously.
+        </p>
+      </div>
+
+      <div class="footer-contact">
+        <div>📍 Palmgroove Bus Stop, Ikorodu Road, Lagos</div>
+
+        <div>
+          <a href="tel:+2349129162078">
+            +234 912 916 2078
+          </a>
+        </div>
+
+        <div>
+          <a href="mailto:footballbootng@gmail.com">
+            footballbootng@gmail.com
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <div>
+        © 2026 FootBallBootNG. All rights reserved.
+      </div>
+
+      <div>
+        Website designed &amp; developed by
+        <a href="#" class="webfoundry">
+          WebFoundry
+        </a>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    const cartKey = "fbngCart";
+
+    let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+
+    function formatPrice(price) {
+      return "₦" + Number(price).toLocaleString("en-NG");
+    }
+
+
+    function updateCartCount() {
+      const count = cart.reduce(
+        (total, item) => total + Number(item.quantity || 0),
+        0
+      );
+
+      document.getElementById("cartCount").textContent = count;
+    }
+
+
+    function renderOrder() {
+
+      const orderItems = document.getElementById("orderItems");
+      const subtotalElement = document.getElementById("subtotal");
+      const totalElement = document.getElementById("total");
+
+      orderItems.innerHTML = "";
+
+      if (cart.length === 0) {
+
+        document.getElementById("checkoutContent").innerHTML = `
+          <div class="empty-checkout">
+            <h2>Your Cart Is Empty</h2>
+
+            <p>
+              Add some football gear before continuing to checkout.
+            </p>
+
+            <a href="shop.html" class="shop-button">
+              Browse Shop
+            </a>
+          </div>
+        `;
+
+        return;
+      }
+
+
+      let subtotal = 0;
+
+
+      cart.forEach(item => {
+
+        const quantity = Number(item.quantity || 1);
+        const price = Number(item.price || 0);
+
+        subtotal += price * quantity;
+
+
+        const itemElement = document.createElement("div");
+
+        itemElement.className = "order-item";
+
+        itemElement.innerHTML = `
+          <div class="item-info">
+            <div class="item-name">
+              ${item.name}
+            </div>
+
+            <div class="item-quantity">
+              Quantity: ${quantity}
+            </div>
+          </div>
+
+          <div class="item-price">
+            ${formatPrice(price * quantity)}
+          </div>
+        `;
+
+        orderItems.appendChild(itemElement);
+
+      });
+
+
+      subtotalElement.textContent = formatPrice(subtotal);
+      totalElement.textContent = formatPrice(subtotal);
+
+    }
+
+
+    document
+      .getElementById("checkoutForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        if (cart.length === 0) {
+          return;
+        }
+
+
+        const firstName =
+          document.getElementById("firstName").value.trim();
+
+        const lastName =
+          document.getElementById("lastName").value.trim();
+
+        const phone =
+          document.getElementById("phone").value.trim();
+
+        const email =
+          document.getElementById("email").value.trim();
+
+        const address =
+          document.getElementById("address").value.trim();
+
+        const city =
+          document.getElementById("city").value.trim();
+
+        const state =
+          document.getElementById("state").value.trim();
+
+        const notes =
+          document.getElementById("notes").value.trim();
+
+
+        let subtotal = 0;
+
+        cart.forEach(item => {
+          subtotal +=
+            Number(item.price || 0) *
+            Number(item.quantity || 1);
+        });
+
+
+        let orderText =
+          "FBNG SPORTS ORDER%0A%0A";
+
+
+        orderText +=
+          "Customer: " +
+          firstName +
+          " " +
+          lastName +
+          "%0A";
+
+        orderText +=
+          "Phone: " +
+          phone +
+          "%0A";
+
+        orderText +=
+          "Email: " +
+          email +
+          "%0A";
+
+        orderText +=
+          "Address: " +
+          address +
+          ", " +
+          city +
+          ", " +
+          state +
+          "%0A%0A";
+
+
+        orderText +=
+          "ITEMS:%0A";
+
+
+        cart.forEach(item => {
+
+          orderText +=
+            "- " +
+            item.name +
+            " x" +
+            item.quantity +
+            " — " +
+            formatPrice(
+              Number(item.price) *
+              Number(item.quantity || 1)
+            ) +
+            "%0A";
+
+        });
+
+
+        orderText +=
+          "%0ATotal: " +
+          formatPrice(subtotal);
+
+
+        if (notes) {
+
+          orderText +=
+            "%0A%0AOrder Notes: " +
+            encodeURIComponent(notes);
+
+        }
+
+
+        const whatsappURL =
+          "https://wa.me/2349129162078?text=" +
+          orderText;
+
+
+        document.getElementById("checkoutContent").style.display =
+          "none";
+
+        document.getElementById("successMessage").style.display =
+          "block";
+
+        document.getElementById("whatsappOrder").href =
+          whatsappURL;
+
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      });
+
+
+    updateCartCount();
+
+    renderOrder();
+
+  </script>
+
+</body>
+</html>
