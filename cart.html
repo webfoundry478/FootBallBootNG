@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cart | FBNG SPORTS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #070909;
+      --surface: #0d1110;
+      --surface-2: #111716;
+      --line: #202826;
+      --text: #f4f7f5;
+      --muted: #89928e;
+      --green: #b7ff32;
+      --green-dark: #8fcf17;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 78px;
+      z-index: 1000;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 6%;
+
+      background: rgba(7, 9, 9, 0.84);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      backdrop-filter: blur(18px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 29px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .logo-mark {
+      width: 31px;
+      height: 31px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--green);
+      color: #071000;
+
+      font-size: 16px;
+      font-weight: 900;
+
+      transform: skew(-8deg);
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: #aeb5b2;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--green);
+    }
+
+    .nav-cart {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-count {
+      min-width: 21px;
+      height: 21px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--green);
+      color: #071000;
+
+      border-radius: 50%;
+
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    /* =========================
+       PAGE HEADER
+    ========================= */
+
+    .page-header {
+      position: relative;
+      overflow: hidden;
+
+      padding: 155px 7% 75px;
+
+      background:
+        radial-gradient(
+          circle at 85% 50%,
+          rgba(183,255,50,0.09),
+          transparent 28%
+        ),
+        linear-gradient(
+          110deg,
+          #070909,
+          #0b100e
+        );
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .page-header::after {
+      content: "CART";
+
+      position: absolute;
+      right: -15px;
+      bottom: -65px;
+
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 210px;
+      font-weight: 900;
+
+      color: rgba(183,255,50,0.035);
+
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-bottom: 18px;
+
+      color: var(--green);
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+
+      width: 28px;
+      height: 2px;
+
+      background: var(--green);
+    }
+
+    .page-header h1 {
+      position: relative;
+      z-index: 2;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: clamp(65px, 10vw, 125px);
+      font-weight: 900;
+
+      line-height: 0.82;
+      letter-spacing: -2px;
+
+      text-transform: uppercase;
+    }
+
+    .page-header h1 span {
+      color: var(--green);
+    }
+
+    .page-header p {
+      position: relative;
+      z-index: 2;
+
+      max-width: 550px;
+
+      margin-top: 24px;
+
+      color: #89928e;
+
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       CART SECTION
+    ========================= */
+
+    .cart-section {
+      padding: 80px 7% 110px;
+    }
+
+    .cart-layout {
+      max-width: 1200px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 1.55fr 0.75fr;
+
+      gap: 25px;
+      align-items: start;
+    }
+
+    /* =========================
+       CART ITEMS
+    ========================= */
+
+    .cart-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+
+    .cart-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 22px 25px;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-panel-header h2 {
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 30px;
+      font-weight: 900;
+
+      text-transform: uppercase;
+    }
+
+    .cart-panel-header span {
+      color: var(--muted);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .cart-items {
+      padding: 8px 25px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+
+      gap: 20px;
+
+      padding: 24px 0;
+
+      border-bottom: 1px solid #1b211f;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .item-category {
+      color: var(--green);
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .item-name {
+      margin-top: 6px;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 27px;
+      font-weight: 800;
+
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .item-price {
+      margin-top: 7px;
+
+      color: #8d9692;
+
+      font-size: 12px;
+    }
+
+    .item-controls {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+
+      border: 1px solid #29312e;
+      background: #080b0a;
+    }
+
+    .quantity-btn {
+      width: 34px;
+      height: 34px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: none;
+
+      background: transparent;
+      color: #aab2ae;
+
+      cursor: pointer;
+
+      font-size: 16px;
+
+      transition: 0.2s ease;
+    }
+
+    .quantity-btn:hover {
+      color: var(--green);
+    }
+
+    .quantity-number {
+      width: 32px;
+
+      color: #fff;
+
+      text-align: center;
+
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .item-total {
+      min-width: 90px;
+
+      color: var(--green);
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 23px;
+      font-weight: 800;
+
+      text-align: right;
+    }
+
+    .remove-btn {
+      padding: 5px 0;
+
+      border: none;
+
+      background: transparent;
+      color: #59615e;
+
+      cursor: pointer;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+
+      transition: 0.2s ease;
+    }
+
+    .remove-btn:hover {
+      color: #ff6b6b;
+    }
+
+    /* =========================
+       EMPTY CART
+    ========================= */
+
+    .empty-cart {
+      padding: 75px 25px;
+
+      text-align: center;
+    }
+
+    .empty-cart-icon {
+      width: 60px;
+      height: 60px;
+
+      margin: 0 auto 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid #2a332f;
+
+      color: var(--green);
+
+      font-size: 24px;
+    }
+
+    .empty-cart h2 {
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 42px;
+      font-weight: 900;
+
+      text-transform: uppercase;
+    }
+
+    .empty-cart p {
+      max-width: 400px;
+
+      margin: 10px auto 25px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .shop-btn {
+      display: inline-flex;
+
+      padding: 14px 23px;
+
+      background: var(--green);
+      color: #071000;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 17px;
+      font-weight: 900;
+
+      text-transform: uppercase;
+
+      transition: 0.25s ease;
+    }
+
+    .shop-btn:hover {
+      background: #d0ff75;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       SUMMARY
+    ========================= */
+
+    .summary {
+      position: sticky;
+      top: 100px;
+
+      padding: 28px;
+
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+
+    .summary-label {
+      color: var(--green);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .summary h2 {
+      margin-top: 8px;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 45px;
+      font-weight: 900;
+
+      text-transform: uppercase;
+    }
+
+    .summary-lines {
+      margin-top: 30px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+
+      padding: 12px 0;
+
+      border-bottom: 1px solid #1d2421;
+
+      color: #818a86;
+
+      font-size: 12px;
+    }
+
+    .summary-row.total {
+      padding-top: 20px;
+
+      border-bottom: none;
+
+      color: #fff;
+
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .summary-row.total span:last-child {
+      color: var(--green);
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 28px;
+    }
+
+    .checkout-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+
+      margin-top: 22px;
+      padding: 16px;
+
+      background: var(--green);
+      color: #071000;
+
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 19px;
+      font-weight: 900;
+
+      text-transform: uppercase;
+
+      transition: 0.25s ease;
+    }
+
+    .checkout-btn:hover {
+      background: #d0ff75;
+      transform: translateY(-2px);
+    }
+
+    .continue-shopping {
+      display: block;
+
+      margin-top: 16px;
+
+      color: #656e6a;
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: 1px;
+      text-align: center;
+      text-transform: uppercase;
+
+      transition: 0.2s ease;
+    }
+
+    .continue-shopping:hover {
+      color: var(--green);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: #050707;
+
+      padding: 55px 7% 25px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+
+      gap: 40px;
+
+      padding-bottom: 45px;
+    }
+
+    .footer-brand h3 {
+      font-family: "Barlow Condensed", sans-serif;
+
+      font-size: 32px;
+
+      text-transform: uppercase;
+    }
+
+    .footer-brand h3 span {
+      color: var(--green);
+    }
+
+    .footer-brand p {
+      max-width: 380px;
+
+      margin-top: 10px;
+
+      color: #6f7774;
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .footer-contact {
+      text-align: right;
+
+      color: #727b77;
+
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    .footer-contact a:hover {
+      color: var(--green);
+    }
+
+    .footer-bottom {
+      padding-top: 22px;
+
+      display: flex;
+      justify-content: space-between;
+
+      border-top: 1px solid #171c1a;
+
+      color: #4f5754;
+
+      font-size: 10px;
+
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .webfoundry {
+      color: #858e8a;
+    }
+
+    .webfoundry:hover {
+      color: var(--green);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .navbar {
+        height: auto;
+        min-height: 70px;
+
+        padding: 14px 5%;
+
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .logo {
+        font-size: 25px;
+      }
+
+      .nav-links {
+        width: 100%;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        font-size: 10px;
+      }
+
+      .page-header {
+        padding: 145px 6% 60px;
+      }
+
+      .cart-section {
+        padding: 60px 6% 80px;
+      }
+
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: static;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-contact {
+        text-align: left;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .cart-items {
+        padding: 8px 17px;
+      }
+
+      .cart-panel-header {
+        padding: 20px 17px;
+      }
+
+      .cart-item {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .item-controls {
+        justify-content: space-between;
+      }
+
+      .item-total {
+        text-align: left;
+      }
+
+      .summary {
+        padding: 23px;
+      }
+
+      .empty-cart {
+        padding: 60px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <a href="index.html" class="logo">
+      <div class="logo-mark">F</div>
+      FBNG <span>SPORTS</span>
+    </a>
+
+    <div class="nav-links">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="shop.html">
+        Shop
+      </a>
+
+      <a href="about.html">
+        About
+      </a>
+
+      <a href="contact.html">
+        Contact
+      </a>
+
+      <a href="cart.html" class="nav-cart active">
+        Cart
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- HEADER -->
+
+  <header class="page-header">
+
+    <div class="eyebrow">
+      FBNG / YOUR SELECTION
+    </div>
+
+    <h1>
+      YOUR<br>
+      <span>CART.</span>
+    </h1>
+
+    <p>
+      Review your selected football boots before moving
+      forward with your order.
+    </p>
+
+  </header>
+
+
+  <!-- CART -->
+
+  <main>
+
+    <section class="cart-section">
+
+      <div class="cart-layout">
+
+
+        <!-- ITEMS -->
+
+        <div class="cart-panel">
+
+          <div class="cart-panel-header">
+
+            <h2>
+              Selected Gear
+            </h2>
+
+            <span id="itemLabel">
+              0 items
+            </span>
+
+          </div>
+
+          <div id="cartContent"></div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <aside class="summary">
+
+          <div class="summary-label">
+            Order Summary
+          </div>
+
+          <h2>
+            TOTAL
+          </h2>
+
+          <div class="summary-lines">
+
+            <div class="summary-row">
+              <span>Items</span>
+              <span id="summaryItems">0</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="subtotal">₦0</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Delivery</span>
+              <span>Calculated later</span>
+            </div>
+
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="total">₦0</span>
+            </div>
+
+          </div>
+
+          <a
+            href="checkout.html"
+            class="checkout-btn"
+            id="checkoutBtn"
+          >
+            Proceed To Checkout →
+          </a>
+
+          <a
+            href="shop.html"
+            class="continue-shopping"
+          >
+            ← Continue Shopping
+          </a>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+
+        <h3>
+          FBNG <span>SPORTS</span>
+        </h3>
+
+        <p>
+          FootBallBootNG — football boots and performance
+          gear for players who take the game seriously.
+        </p>
+
+      </div>
+
+
+      <div class="footer-contact">
+
+        <div>
+          📍 Palmgroove Bus Stop, Ikorodu Road, Lagos
+        </div>
+
+        <div>
+          <a href="tel:+2349129162078">
+            +234 912 916 2078
+          </a>
+        </div>
+
+        <div>
+          <a href="mailto:footballbootng@gmail.com">
+            footballbootng@gmail.com
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <div>
+        © 2026 FootBallBootNG. All rights reserved.
+      </div>
+
+      <div>
+        Website designed &amp; developed by
+        <a href="#" class="webfoundry">
+          WebFoundry
+        </a>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    const cartKey = "fbngCart";
+
+    let cart =
+      JSON.parse(
+        localStorage.getItem(cartKey)
+      ) || [];
+
+
+    const cartContent =
+      document.getElementById("cartContent");
+
+    const cartCount =
+      document.getElementById("cartCount");
+
+    const itemLabel =
+      document.getElementById("itemLabel");
+
+    const summaryItems =
+      document.getElementById("summaryItems");
+
+    const subtotalElement =
+      document.getElementById("subtotal");
+
+    const totalElement =
+      document.getElementById("total");
+
+    const checkoutBtn =
+      document.getElementById("checkoutBtn");
+
+
+    function formatPrice(price) {
+
+      return "₦" +
+        Number(price).toLocaleString("en-NG");
+
+    }
+
+
+    function saveCart() {
+
+      localStorage.setItem(
+        cartKey,
+        JSON.stringify(cart)
+      );
+
+    }
+
+
+    function updateCart() {
+
+      saveCart();
+
+      const itemCount =
+        cart.reduce(
+          (total, item) =>
+            total + Number(item.quantity || 0),
+          0
+        );
+
+
+      const subtotal =
+        cart.reduce(
+          (total, item) =>
+            total +
+            Number(item.price) *
+            Number(item.quantity || 0),
+          0
+        );
+
+
+      cartCount.textContent =
+        itemCount;
+
+      itemLabel.textContent =
+        `${itemCount} ${
+          itemCount === 1 ? "item" : "items"
+        }`;
+
+      summaryItems.textContent =
+        itemCount;
+
+      subtotalElement.textContent =
+        formatPrice(subtotal);
+
+      totalElement.textContent =
+        formatPrice(subtotal);
+
+
+      if (cart.length === 0) {
+
+        cartContent.innerHTML = `
+
+          <div class="empty-cart">
+
+            <div class="empty-cart-icon">
+              +
+            </div>
+
+            <h2>
+              Your Cart Is Empty
+            </h2>
+
+            <p>
+              You haven't selected any football boots yet.
+              Explore the collection and find your next pair.
+            </p>
+
+            <a
+              href="shop.html"
+              class="shop-btn"
+            >
+              Shop Football Boots →
+            </a>
+
+          </div>
+
+        `;
+
+        checkoutBtn.style.pointerEvents = "none";
+        checkoutBtn.style.opacity = "0.35";
+
+        return;
+
+      }
+
+
+      checkoutBtn.style.pointerEvents = "auto";
+      checkoutBtn.style.opacity = "1";
+
+
+      cartContent.innerHTML = cart.map(
+        (item, index) => {
+
+          const quantity =
+            Number(item.quantity || 0);
+
+          const itemTotal =
+            Number(item.price) * quantity;
+
+
+          return `
+
+            <div class="cart-item">
+
+              <div class="item-main">
+
+                <div class="item-category">
+                  FBNG / FOOTBALL BOOTS
+                </div>
+
+                <div class="item-name">
+                  ${item.name}
+                </div>
+
+                <div class="item-price">
+                  ${formatPrice(item.price)} each
+                </div>
+
+                <button
+                  class="remove-btn"
+                  onclick="removeItem(${index})"
+                >
+                  Remove Item
+                </button>
+
+              </div>
+
+
+              <div class="item-controls">
+
+                <div class="quantity-control">
+
+                  <button
+                    class="quantity-btn"
+                    onclick="changeQuantity(${index}, -1)"
+                  >
+                    −
+                  </button>
+
+                  <div class="quantity-number">
+                    ${quantity}
+                  </div>
+
+                  <button
+                    class="quantity-btn"
+                    onclick="changeQuantity(${index}, 1)"
+                  >
+                    +
+                  </button>
+
+                </div>
+
+                <div class="item-total">
+                  ${formatPrice(itemTotal)}
+                </div>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      ).join("");
+
+    }
+
+
+    function changeQuantity(index, change) {
+
+      if (!cart[index]) return;
+
+      cart[index].quantity =
+        Number(cart[index].quantity || 0) +
+        change;
+
+
+      if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+      }
+
+
+      updateCart();
+
+    }
+
+
+    function removeItem(index) {
+
+      cart.splice(index, 1);
+
+      updateCart();
+
+    }
+
+
+    updateCart();
+
+  </script>
+
+</body>
+</html>
